@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RegisterAPII")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a141bc484a0bd7fa4ee33e16d803a3753184ac63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a5b8756bb29cab9fd2ad72ff415d1a63f366af1")]
 [assembly: System.Reflection.AssemblyProductAttribute("RegisterAPII")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RegisterAPII")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

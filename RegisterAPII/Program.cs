@@ -19,15 +19,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowSpecificOrigin", policyBuilder =>
+    builder.Services.AddCors(options =>
     {
-        policyBuilder.WithOrigins("http://localhost:3000")
-                     .AllowAnyMethod()
-                     .AllowAnyHeader();
+        options.AddPolicy("AllowSpecificOrigin", policyBuilder =>
+        {
+            policyBuilder.WithOrigins("http://localhost:3000")
+                         .AllowAnyMethod()
+                         .AllowAnyHeader();
+        });
     });
-});
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -35,6 +35,10 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("Emai
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<IStudentProfileRepository, StudentProfileRepository>();
 builder.Services.AddScoped<IGradeRepository, GradeRepository>();
+builder.Services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
 
 builder.Services.AddScoped<IJwtService>(provider =>
     new JwtService(builder.Configuration["Jwt:Key"]));

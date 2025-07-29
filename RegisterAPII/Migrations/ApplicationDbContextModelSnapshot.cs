@@ -498,6 +498,68 @@ namespace RegisterAPII.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RegisterAPII.Models.AttendanceRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsPresent")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("NoteId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SessionNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NoteId");
+
+                    b.ToTable("AttendanceRecords");
+                });
+
+            modelBuilder.Entity("RegisterAPII.Models.BehaviorNote", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AttendanceRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoteType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BehaviorNotes");
+                });
+
             modelBuilder.Entity("RegisterAPII.Models.ClassRoom", b =>
                 {
                     b.Property<int>("Id")
@@ -524,73 +586,73 @@ namespace RegisterAPII.Migrations
                         {
                             Id = 1,
                             GradeId = 1,
-                            Name = "Wheeler 1"
+                            Name = "Junior 1"
                         },
                         new
                         {
                             Id = 2,
                             GradeId = 1,
-                            Name = "Wheeler 2"
+                            Name = "Junior 2"
                         },
                         new
                         {
                             Id = 3,
                             GradeId = 1,
-                            Name = "Wheeler 3"
+                            Name = "Junior 3"
                         },
                         new
                         {
                             Id = 4,
                             GradeId = 1,
-                            Name = "Wheeler 4"
+                            Name = "Junior 4"
                         },
                         new
                         {
                             Id = 5,
                             GradeId = 2,
-                            Name = "Senior 1"
+                            Name = "Wheeler 1"
                         },
                         new
                         {
                             Id = 6,
                             GradeId = 2,
-                            Name = "Senior 2"
+                            Name = "Wheeler 2"
                         },
                         new
                         {
                             Id = 7,
                             GradeId = 2,
-                            Name = "Senior 3"
+                            Name = "Wheeler 3"
                         },
                         new
                         {
                             Id = 8,
                             GradeId = 2,
-                            Name = "Senior 4"
+                            Name = "Wheeler 4"
                         },
                         new
                         {
                             Id = 9,
                             GradeId = 3,
-                            Name = "Junior 1"
+                            Name = "Senior 1"
                         },
                         new
                         {
                             Id = 10,
                             GradeId = 3,
-                            Name = "Junior 2"
+                            Name = "Senior 2"
                         },
                         new
                         {
                             Id = 11,
                             GradeId = 3,
-                            Name = "Junior 3"
+                            Name = "Senior 3"
                         },
                         new
                         {
                             Id = 12,
                             GradeId = 3,
-                            Name = "Junior 4"
+                            Name = "Senior 4"
                         });
                 });
 
@@ -614,17 +676,17 @@ namespace RegisterAPII.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Wheeler"
+                            Name = "Junior"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Senior"
+                            Name = "Wheeler"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Junior"
+                            Name = "Senior"
                         });
                 });
 
@@ -939,6 +1001,82 @@ namespace RegisterAPII.Migrations
                         });
                 });
 
+            modelBuilder.Entity("RegisterAPII.Models.Note", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Notes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Side Talks"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Eating"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Late"
+                        });
+                });
+
+            modelBuilder.Entity("RegisterAPII.Models.NotificationCrud", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Descreption")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRidden")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotificationCruds");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descreption = "Description 1",
+                            IsRidden = false,
+                            Role = "Role 1",
+                            Title = "Notification 1"
+                        });
+                });
+
             modelBuilder.Entity("RegisterAPII.Models.Role", b =>
                 {
                     b.Property<int>("RoleId")
@@ -1117,7 +1255,9 @@ namespace RegisterAPII.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<int>("DaysAbsent")
                         .HasColumnType("int");
@@ -1147,55 +1287,2701 @@ namespace RegisterAPII.Migrations
                         {
                             Id = 1,
                             Age = 0,
-                            ClassId = 2,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5534),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8568),
                             DaysAbsent = 0,
-                            Name = "Student 1"
+                            Name = "Student 1 in Junior 1"
                         },
                         new
                         {
                             Id = 2,
                             Age = 0,
-                            ClassId = 2,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5537),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8569),
                             DaysAbsent = 0,
-                            Name = "Student 2"
+                            Name = "Student 2 in Junior 1"
                         },
                         new
                         {
                             Id = 3,
                             Age = 0,
-                            ClassId = 3,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5538),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8571),
                             DaysAbsent = 0,
-                            Name = "Student 3"
+                            Name = "Student 3 in Junior 1"
                         },
                         new
                         {
                             Id = 4,
                             Age = 0,
-                            ClassId = 3,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5539),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8572),
                             DaysAbsent = 0,
-                            Name = "Student 4"
+                            Name = "Student 4 in Junior 1"
                         },
                         new
                         {
                             Id = 5,
                             Age = 0,
-                            ClassId = 4,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5540),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8573),
                             DaysAbsent = 0,
-                            Name = "Student 5"
+                            Name = "Student 5 in Junior 1"
                         },
                         new
                         {
                             Id = 6,
                             Age = 0,
-                            ClassId = 4,
-                            CreatedAt = new DateTime(2025, 7, 22, 9, 26, 55, 768, DateTimeKind.Utc).AddTicks(5541),
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8574),
                             DaysAbsent = 0,
-                            Name = "Student 6"
+                            Name = "Student 6 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8575),
+                            DaysAbsent = 0,
+                            Name = "Student 7 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8576),
+                            DaysAbsent = 0,
+                            Name = "Student 8 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8577),
+                            DaysAbsent = 0,
+                            Name = "Student 9 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8578),
+                            DaysAbsent = 0,
+                            Name = "Student 10 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8579),
+                            DaysAbsent = 0,
+                            Name = "Student 11 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8580),
+                            DaysAbsent = 0,
+                            Name = "Student 12 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8581),
+                            DaysAbsent = 0,
+                            Name = "Student 13 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8582),
+                            DaysAbsent = 0,
+                            Name = "Student 14 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8583),
+                            DaysAbsent = 0,
+                            Name = "Student 15 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8584),
+                            DaysAbsent = 0,
+                            Name = "Student 16 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8585),
+                            DaysAbsent = 0,
+                            Name = "Student 17 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8586),
+                            DaysAbsent = 0,
+                            Name = "Student 18 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8587),
+                            DaysAbsent = 0,
+                            Name = "Student 19 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8588),
+                            DaysAbsent = 0,
+                            Name = "Student 20 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8589),
+                            DaysAbsent = 0,
+                            Name = "Student 21 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8590),
+                            DaysAbsent = 0,
+                            Name = "Student 22 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 23,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8591),
+                            DaysAbsent = 0,
+                            Name = "Student 23 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8592),
+                            DaysAbsent = 0,
+                            Name = "Student 24 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Age = 0,
+                            ClassId = 1,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8593),
+                            DaysAbsent = 0,
+                            Name = "Student 25 in Junior 1"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8594),
+                            DaysAbsent = 0,
+                            Name = "Student 26 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8595),
+                            DaysAbsent = 0,
+                            Name = "Student 27 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8596),
+                            DaysAbsent = 0,
+                            Name = "Student 28 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8597),
+                            DaysAbsent = 0,
+                            Name = "Student 29 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8598),
+                            DaysAbsent = 0,
+                            Name = "Student 30 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8599),
+                            DaysAbsent = 0,
+                            Name = "Student 31 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8600),
+                            DaysAbsent = 0,
+                            Name = "Student 32 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8601),
+                            DaysAbsent = 0,
+                            Name = "Student 33 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8602),
+                            DaysAbsent = 0,
+                            Name = "Student 34 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 35,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8603),
+                            DaysAbsent = 0,
+                            Name = "Student 35 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 36,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8604),
+                            DaysAbsent = 0,
+                            Name = "Student 36 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 37,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8605),
+                            DaysAbsent = 0,
+                            Name = "Student 37 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 38,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8606),
+                            DaysAbsent = 0,
+                            Name = "Student 38 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 39,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8607),
+                            DaysAbsent = 0,
+                            Name = "Student 39 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8608),
+                            DaysAbsent = 0,
+                            Name = "Student 40 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8609),
+                            DaysAbsent = 0,
+                            Name = "Student 41 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8610),
+                            DaysAbsent = 0,
+                            Name = "Student 42 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8611),
+                            DaysAbsent = 0,
+                            Name = "Student 43 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8612),
+                            DaysAbsent = 0,
+                            Name = "Student 44 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8613),
+                            DaysAbsent = 0,
+                            Name = "Student 45 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8614),
+                            DaysAbsent = 0,
+                            Name = "Student 46 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8615),
+                            DaysAbsent = 0,
+                            Name = "Student 47 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8616),
+                            DaysAbsent = 0,
+                            Name = "Student 48 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8617),
+                            DaysAbsent = 0,
+                            Name = "Student 49 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 50,
+                            Age = 0,
+                            ClassId = 2,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8618),
+                            DaysAbsent = 0,
+                            Name = "Student 50 in Junior 2"
+                        },
+                        new
+                        {
+                            Id = 51,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8619),
+                            DaysAbsent = 0,
+                            Name = "Student 51 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 52,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(8620),
+                            DaysAbsent = 0,
+                            Name = "Student 52 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 53,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9965),
+                            DaysAbsent = 0,
+                            Name = "Student 53 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 54,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9967),
+                            DaysAbsent = 0,
+                            Name = "Student 54 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 55,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9968),
+                            DaysAbsent = 0,
+                            Name = "Student 55 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 56,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9970),
+                            DaysAbsent = 0,
+                            Name = "Student 56 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 57,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9971),
+                            DaysAbsent = 0,
+                            Name = "Student 57 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 58,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9972),
+                            DaysAbsent = 0,
+                            Name = "Student 58 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 59,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9972),
+                            DaysAbsent = 0,
+                            Name = "Student 59 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9974),
+                            DaysAbsent = 0,
+                            Name = "Student 60 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9975),
+                            DaysAbsent = 0,
+                            Name = "Student 61 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9976),
+                            DaysAbsent = 0,
+                            Name = "Student 62 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9977),
+                            DaysAbsent = 0,
+                            Name = "Student 63 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9978),
+                            DaysAbsent = 0,
+                            Name = "Student 64 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9979),
+                            DaysAbsent = 0,
+                            Name = "Student 65 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 66,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9980),
+                            DaysAbsent = 0,
+                            Name = "Student 66 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 67,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9981),
+                            DaysAbsent = 0,
+                            Name = "Student 67 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 68,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9982),
+                            DaysAbsent = 0,
+                            Name = "Student 68 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 69,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9983),
+                            DaysAbsent = 0,
+                            Name = "Student 69 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 70,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9984),
+                            DaysAbsent = 0,
+                            Name = "Student 70 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 71,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9985),
+                            DaysAbsent = 0,
+                            Name = "Student 71 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 72,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9986),
+                            DaysAbsent = 0,
+                            Name = "Student 72 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 73,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9987),
+                            DaysAbsent = 0,
+                            Name = "Student 73 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 74,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9988),
+                            DaysAbsent = 0,
+                            Name = "Student 74 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 75,
+                            Age = 0,
+                            ClassId = 3,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9989),
+                            DaysAbsent = 0,
+                            Name = "Student 75 in Junior 3"
+                        },
+                        new
+                        {
+                            Id = 76,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9990),
+                            DaysAbsent = 0,
+                            Name = "Student 76 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 77,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9991),
+                            DaysAbsent = 0,
+                            Name = "Student 77 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 78,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9992),
+                            DaysAbsent = 0,
+                            Name = "Student 78 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 79,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9993),
+                            DaysAbsent = 0,
+                            Name = "Student 79 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 80,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9994),
+                            DaysAbsent = 0,
+                            Name = "Student 80 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 81,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9995),
+                            DaysAbsent = 0,
+                            Name = "Student 81 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 82,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9996),
+                            DaysAbsent = 0,
+                            Name = "Student 82 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 83,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9997),
+                            DaysAbsent = 0,
+                            Name = "Student 83 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 84,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9997),
+                            DaysAbsent = 0,
+                            Name = "Student 84 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 85,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 356, DateTimeKind.Utc).AddTicks(9999),
+                            DaysAbsent = 0,
+                            Name = "Student 85 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 86,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc),
+                            DaysAbsent = 0,
+                            Name = "Student 86 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 87,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(1),
+                            DaysAbsent = 0,
+                            Name = "Student 87 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 88,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2),
+                            DaysAbsent = 0,
+                            Name = "Student 88 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 89,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3),
+                            DaysAbsent = 0,
+                            Name = "Student 89 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 90,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(4),
+                            DaysAbsent = 0,
+                            Name = "Student 90 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 91,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(4),
+                            DaysAbsent = 0,
+                            Name = "Student 91 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 92,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(5),
+                            DaysAbsent = 0,
+                            Name = "Student 92 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 93,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(7),
+                            DaysAbsent = 0,
+                            Name = "Student 93 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 94,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(7),
+                            DaysAbsent = 0,
+                            Name = "Student 94 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 95,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(8),
+                            DaysAbsent = 0,
+                            Name = "Student 95 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 96,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(9),
+                            DaysAbsent = 0,
+                            Name = "Student 96 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 97,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(10),
+                            DaysAbsent = 0,
+                            Name = "Student 97 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 98,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(11),
+                            DaysAbsent = 0,
+                            Name = "Student 98 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 99,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(12),
+                            DaysAbsent = 0,
+                            Name = "Student 99 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 100,
+                            Age = 0,
+                            ClassId = 4,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(13),
+                            DaysAbsent = 0,
+                            Name = "Student 100 in Junior 4"
+                        },
+                        new
+                        {
+                            Id = 101,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(14),
+                            DaysAbsent = 0,
+                            Name = "Student 101 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 102,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(15),
+                            DaysAbsent = 0,
+                            Name = "Student 102 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 103,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(17),
+                            DaysAbsent = 0,
+                            Name = "Student 103 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 104,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(17),
+                            DaysAbsent = 0,
+                            Name = "Student 104 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 105,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(18),
+                            DaysAbsent = 0,
+                            Name = "Student 105 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 106,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(19),
+                            DaysAbsent = 0,
+                            Name = "Student 106 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 107,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(20),
+                            DaysAbsent = 0,
+                            Name = "Student 107 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 108,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(21),
+                            DaysAbsent = 0,
+                            Name = "Student 108 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 109,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(22),
+                            DaysAbsent = 0,
+                            Name = "Student 109 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 110,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(23),
+                            DaysAbsent = 0,
+                            Name = "Student 110 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 111,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(24),
+                            DaysAbsent = 0,
+                            Name = "Student 111 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 112,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(25),
+                            DaysAbsent = 0,
+                            Name = "Student 112 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 113,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(26),
+                            DaysAbsent = 0,
+                            Name = "Student 113 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 114,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(27),
+                            DaysAbsent = 0,
+                            Name = "Student 114 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 115,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(28),
+                            DaysAbsent = 0,
+                            Name = "Student 115 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 116,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(29),
+                            DaysAbsent = 0,
+                            Name = "Student 116 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 117,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(31),
+                            DaysAbsent = 0,
+                            Name = "Student 117 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 118,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(31),
+                            DaysAbsent = 0,
+                            Name = "Student 118 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 119,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(33),
+                            DaysAbsent = 0,
+                            Name = "Student 119 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 120,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(33),
+                            DaysAbsent = 0,
+                            Name = "Student 120 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 121,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(35),
+                            DaysAbsent = 0,
+                            Name = "Student 121 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 122,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(36),
+                            DaysAbsent = 0,
+                            Name = "Student 122 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 123,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(37),
+                            DaysAbsent = 0,
+                            Name = "Student 123 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 124,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(38),
+                            DaysAbsent = 0,
+                            Name = "Student 124 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 125,
+                            Age = 0,
+                            ClassId = 5,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(39),
+                            DaysAbsent = 0,
+                            Name = "Student 125 in Wheeler 1"
+                        },
+                        new
+                        {
+                            Id = 126,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(40),
+                            DaysAbsent = 0,
+                            Name = "Student 126 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 127,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(41),
+                            DaysAbsent = 0,
+                            Name = "Student 127 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 128,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(42),
+                            DaysAbsent = 0,
+                            Name = "Student 128 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 129,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(43),
+                            DaysAbsent = 0,
+                            Name = "Student 129 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 130,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(43),
+                            DaysAbsent = 0,
+                            Name = "Student 130 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 131,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(44),
+                            DaysAbsent = 0,
+                            Name = "Student 131 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 132,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(680),
+                            DaysAbsent = 0,
+                            Name = "Student 132 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 133,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(682),
+                            DaysAbsent = 0,
+                            Name = "Student 133 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 134,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(683),
+                            DaysAbsent = 0,
+                            Name = "Student 134 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 135,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(684),
+                            DaysAbsent = 0,
+                            Name = "Student 135 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 136,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(685),
+                            DaysAbsent = 0,
+                            Name = "Student 136 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 137,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(686),
+                            DaysAbsent = 0,
+                            Name = "Student 137 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 138,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(687),
+                            DaysAbsent = 0,
+                            Name = "Student 138 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 139,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(688),
+                            DaysAbsent = 0,
+                            Name = "Student 139 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 140,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(689),
+                            DaysAbsent = 0,
+                            Name = "Student 140 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 141,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(690),
+                            DaysAbsent = 0,
+                            Name = "Student 141 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 142,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(692),
+                            DaysAbsent = 0,
+                            Name = "Student 142 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 143,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(693),
+                            DaysAbsent = 0,
+                            Name = "Student 143 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 144,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(694),
+                            DaysAbsent = 0,
+                            Name = "Student 144 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 145,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(695),
+                            DaysAbsent = 0,
+                            Name = "Student 145 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 146,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(696),
+                            DaysAbsent = 0,
+                            Name = "Student 146 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 147,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(697),
+                            DaysAbsent = 0,
+                            Name = "Student 147 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 148,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(697),
+                            DaysAbsent = 0,
+                            Name = "Student 148 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 149,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(698),
+                            DaysAbsent = 0,
+                            Name = "Student 149 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 150,
+                            Age = 0,
+                            ClassId = 6,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(699),
+                            DaysAbsent = 0,
+                            Name = "Student 150 in Wheeler 2"
+                        },
+                        new
+                        {
+                            Id = 151,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(700),
+                            DaysAbsent = 0,
+                            Name = "Student 151 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 152,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(701),
+                            DaysAbsent = 0,
+                            Name = "Student 152 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 153,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(702),
+                            DaysAbsent = 0,
+                            Name = "Student 153 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 154,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(703),
+                            DaysAbsent = 0,
+                            Name = "Student 154 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 155,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(704),
+                            DaysAbsent = 0,
+                            Name = "Student 155 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 156,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(705),
+                            DaysAbsent = 0,
+                            Name = "Student 156 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 157,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(706),
+                            DaysAbsent = 0,
+                            Name = "Student 157 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 158,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(708),
+                            DaysAbsent = 0,
+                            Name = "Student 158 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 159,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(709),
+                            DaysAbsent = 0,
+                            Name = "Student 159 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 160,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(709),
+                            DaysAbsent = 0,
+                            Name = "Student 160 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 161,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(711),
+                            DaysAbsent = 0,
+                            Name = "Student 161 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 162,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(712),
+                            DaysAbsent = 0,
+                            Name = "Student 162 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 163,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(713),
+                            DaysAbsent = 0,
+                            Name = "Student 163 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 164,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(714),
+                            DaysAbsent = 0,
+                            Name = "Student 164 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 165,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(715),
+                            DaysAbsent = 0,
+                            Name = "Student 165 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 166,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(716),
+                            DaysAbsent = 0,
+                            Name = "Student 166 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 167,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(717),
+                            DaysAbsent = 0,
+                            Name = "Student 167 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 168,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(718),
+                            DaysAbsent = 0,
+                            Name = "Student 168 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 169,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(719),
+                            DaysAbsent = 0,
+                            Name = "Student 169 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 170,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(720),
+                            DaysAbsent = 0,
+                            Name = "Student 170 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 171,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(721),
+                            DaysAbsent = 0,
+                            Name = "Student 171 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 172,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(722),
+                            DaysAbsent = 0,
+                            Name = "Student 172 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 173,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(723),
+                            DaysAbsent = 0,
+                            Name = "Student 173 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 174,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(724),
+                            DaysAbsent = 0,
+                            Name = "Student 174 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 175,
+                            Age = 0,
+                            ClassId = 7,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(725),
+                            DaysAbsent = 0,
+                            Name = "Student 175 in Wheeler 3"
+                        },
+                        new
+                        {
+                            Id = 176,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(726),
+                            DaysAbsent = 0,
+                            Name = "Student 176 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 177,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(727),
+                            DaysAbsent = 0,
+                            Name = "Student 177 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 178,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(728),
+                            DaysAbsent = 0,
+                            Name = "Student 178 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 179,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(729),
+                            DaysAbsent = 0,
+                            Name = "Student 179 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 180,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(731),
+                            DaysAbsent = 0,
+                            Name = "Student 180 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 181,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(732),
+                            DaysAbsent = 0,
+                            Name = "Student 181 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 182,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(733),
+                            DaysAbsent = 0,
+                            Name = "Student 182 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 183,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(734),
+                            DaysAbsent = 0,
+                            Name = "Student 183 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 184,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(735),
+                            DaysAbsent = 0,
+                            Name = "Student 184 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 185,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(736),
+                            DaysAbsent = 0,
+                            Name = "Student 185 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 186,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(737),
+                            DaysAbsent = 0,
+                            Name = "Student 186 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 187,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(738),
+                            DaysAbsent = 0,
+                            Name = "Student 187 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 188,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(739),
+                            DaysAbsent = 0,
+                            Name = "Student 188 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 189,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(740),
+                            DaysAbsent = 0,
+                            Name = "Student 189 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 190,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(741),
+                            DaysAbsent = 0,
+                            Name = "Student 190 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 191,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(742),
+                            DaysAbsent = 0,
+                            Name = "Student 191 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 192,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(743),
+                            DaysAbsent = 0,
+                            Name = "Student 192 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 193,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(745),
+                            DaysAbsent = 0,
+                            Name = "Student 193 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 194,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(745),
+                            DaysAbsent = 0,
+                            Name = "Student 194 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 195,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(747),
+                            DaysAbsent = 0,
+                            Name = "Student 195 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 196,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(748),
+                            DaysAbsent = 0,
+                            Name = "Student 196 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 197,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(749),
+                            DaysAbsent = 0,
+                            Name = "Student 197 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 198,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(750),
+                            DaysAbsent = 0,
+                            Name = "Student 198 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 199,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(751),
+                            DaysAbsent = 0,
+                            Name = "Student 199 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 200,
+                            Age = 0,
+                            ClassId = 8,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(752),
+                            DaysAbsent = 0,
+                            Name = "Student 200 in Wheeler 4"
+                        },
+                        new
+                        {
+                            Id = 201,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(753),
+                            DaysAbsent = 0,
+                            Name = "Student 201 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 202,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(754),
+                            DaysAbsent = 0,
+                            Name = "Student 202 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 203,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(755),
+                            DaysAbsent = 0,
+                            Name = "Student 203 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 204,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(756),
+                            DaysAbsent = 0,
+                            Name = "Student 204 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 205,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(757),
+                            DaysAbsent = 0,
+                            Name = "Student 205 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 206,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(758),
+                            DaysAbsent = 0,
+                            Name = "Student 206 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 207,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(759),
+                            DaysAbsent = 0,
+                            Name = "Student 207 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 208,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(760),
+                            DaysAbsent = 0,
+                            Name = "Student 208 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 209,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(761),
+                            DaysAbsent = 0,
+                            Name = "Student 209 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 210,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(762),
+                            DaysAbsent = 0,
+                            Name = "Student 210 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 211,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2011),
+                            DaysAbsent = 0,
+                            Name = "Student 211 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 212,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2013),
+                            DaysAbsent = 0,
+                            Name = "Student 212 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 213,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2014),
+                            DaysAbsent = 0,
+                            Name = "Student 213 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 214,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2015),
+                            DaysAbsent = 0,
+                            Name = "Student 214 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 215,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2016),
+                            DaysAbsent = 0,
+                            Name = "Student 215 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 216,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2017),
+                            DaysAbsent = 0,
+                            Name = "Student 216 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 217,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2018),
+                            DaysAbsent = 0,
+                            Name = "Student 217 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 218,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2019),
+                            DaysAbsent = 0,
+                            Name = "Student 218 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 219,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2020),
+                            DaysAbsent = 0,
+                            Name = "Student 219 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 220,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2021),
+                            DaysAbsent = 0,
+                            Name = "Student 220 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 221,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2022),
+                            DaysAbsent = 0,
+                            Name = "Student 221 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 222,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2023),
+                            DaysAbsent = 0,
+                            Name = "Student 222 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 223,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2024),
+                            DaysAbsent = 0,
+                            Name = "Student 223 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 224,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2025),
+                            DaysAbsent = 0,
+                            Name = "Student 224 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 225,
+                            Age = 0,
+                            ClassId = 9,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2026),
+                            DaysAbsent = 0,
+                            Name = "Student 225 in Senior 1"
+                        },
+                        new
+                        {
+                            Id = 226,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2027),
+                            DaysAbsent = 0,
+                            Name = "Student 226 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 227,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2028),
+                            DaysAbsent = 0,
+                            Name = "Student 227 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 228,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2029),
+                            DaysAbsent = 0,
+                            Name = "Student 228 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 229,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2030),
+                            DaysAbsent = 0,
+                            Name = "Student 229 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 230,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2031),
+                            DaysAbsent = 0,
+                            Name = "Student 230 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 231,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2032),
+                            DaysAbsent = 0,
+                            Name = "Student 231 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 232,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2033),
+                            DaysAbsent = 0,
+                            Name = "Student 232 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 233,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2034),
+                            DaysAbsent = 0,
+                            Name = "Student 233 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 234,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2035),
+                            DaysAbsent = 0,
+                            Name = "Student 234 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 235,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2036),
+                            DaysAbsent = 0,
+                            Name = "Student 235 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 236,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2037),
+                            DaysAbsent = 0,
+                            Name = "Student 236 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 237,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2038),
+                            DaysAbsent = 0,
+                            Name = "Student 237 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 238,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2039),
+                            DaysAbsent = 0,
+                            Name = "Student 238 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 239,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2040),
+                            DaysAbsent = 0,
+                            Name = "Student 239 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 240,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2041),
+                            DaysAbsent = 0,
+                            Name = "Student 240 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 241,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2042),
+                            DaysAbsent = 0,
+                            Name = "Student 241 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 242,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2043),
+                            DaysAbsent = 0,
+                            Name = "Student 242 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 243,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2044),
+                            DaysAbsent = 0,
+                            Name = "Student 243 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 244,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2045),
+                            DaysAbsent = 0,
+                            Name = "Student 244 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 245,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2046),
+                            DaysAbsent = 0,
+                            Name = "Student 245 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 246,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2047),
+                            DaysAbsent = 0,
+                            Name = "Student 246 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 247,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2048),
+                            DaysAbsent = 0,
+                            Name = "Student 247 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 248,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2049),
+                            DaysAbsent = 0,
+                            Name = "Student 248 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 249,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2050),
+                            DaysAbsent = 0,
+                            Name = "Student 249 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 250,
+                            Age = 0,
+                            ClassId = 10,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2051),
+                            DaysAbsent = 0,
+                            Name = "Student 250 in Senior 2"
+                        },
+                        new
+                        {
+                            Id = 251,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2052),
+                            DaysAbsent = 0,
+                            Name = "Student 251 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 252,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2053),
+                            DaysAbsent = 0,
+                            Name = "Student 252 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 253,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2054),
+                            DaysAbsent = 0,
+                            Name = "Student 253 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 254,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2055),
+                            DaysAbsent = 0,
+                            Name = "Student 254 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 255,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2056),
+                            DaysAbsent = 0,
+                            Name = "Student 255 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 256,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2057),
+                            DaysAbsent = 0,
+                            Name = "Student 256 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 257,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2058),
+                            DaysAbsent = 0,
+                            Name = "Student 257 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 258,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2059),
+                            DaysAbsent = 0,
+                            Name = "Student 258 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 259,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2060),
+                            DaysAbsent = 0,
+                            Name = "Student 259 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 260,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2061),
+                            DaysAbsent = 0,
+                            Name = "Student 260 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 261,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2061),
+                            DaysAbsent = 0,
+                            Name = "Student 261 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 262,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2062),
+                            DaysAbsent = 0,
+                            Name = "Student 262 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 263,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2063),
+                            DaysAbsent = 0,
+                            Name = "Student 263 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 264,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2064),
+                            DaysAbsent = 0,
+                            Name = "Student 264 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 265,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2065),
+                            DaysAbsent = 0,
+                            Name = "Student 265 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 266,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2066),
+                            DaysAbsent = 0,
+                            Name = "Student 266 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 267,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2067),
+                            DaysAbsent = 0,
+                            Name = "Student 267 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 268,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2068),
+                            DaysAbsent = 0,
+                            Name = "Student 268 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 269,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2069),
+                            DaysAbsent = 0,
+                            Name = "Student 269 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 270,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2070),
+                            DaysAbsent = 0,
+                            Name = "Student 270 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 271,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2071),
+                            DaysAbsent = 0,
+                            Name = "Student 271 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 272,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2072),
+                            DaysAbsent = 0,
+                            Name = "Student 272 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 273,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2073),
+                            DaysAbsent = 0,
+                            Name = "Student 273 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 274,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2074),
+                            DaysAbsent = 0,
+                            Name = "Student 274 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 275,
+                            Age = 0,
+                            ClassId = 11,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2075),
+                            DaysAbsent = 0,
+                            Name = "Student 275 in Senior 3"
+                        },
+                        new
+                        {
+                            Id = 276,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2076),
+                            DaysAbsent = 0,
+                            Name = "Student 276 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 277,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2077),
+                            DaysAbsent = 0,
+                            Name = "Student 277 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 278,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2078),
+                            DaysAbsent = 0,
+                            Name = "Student 278 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 279,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2079),
+                            DaysAbsent = 0,
+                            Name = "Student 279 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 280,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2080),
+                            DaysAbsent = 0,
+                            Name = "Student 280 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 281,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2081),
+                            DaysAbsent = 0,
+                            Name = "Student 281 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 282,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2082),
+                            DaysAbsent = 0,
+                            Name = "Student 282 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 283,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2083),
+                            DaysAbsent = 0,
+                            Name = "Student 283 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 284,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2084),
+                            DaysAbsent = 0,
+                            Name = "Student 284 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 285,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2085),
+                            DaysAbsent = 0,
+                            Name = "Student 285 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 286,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2086),
+                            DaysAbsent = 0,
+                            Name = "Student 286 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 287,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2086),
+                            DaysAbsent = 0,
+                            Name = "Student 287 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 288,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2087),
+                            DaysAbsent = 0,
+                            Name = "Student 288 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 289,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(2088),
+                            DaysAbsent = 0,
+                            Name = "Student 289 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 290,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3044),
+                            DaysAbsent = 0,
+                            Name = "Student 290 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 291,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3047),
+                            DaysAbsent = 0,
+                            Name = "Student 291 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 292,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3048),
+                            DaysAbsent = 0,
+                            Name = "Student 292 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 293,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3049),
+                            DaysAbsent = 0,
+                            Name = "Student 293 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 294,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3050),
+                            DaysAbsent = 0,
+                            Name = "Student 294 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 295,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3051),
+                            DaysAbsent = 0,
+                            Name = "Student 295 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 296,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3052),
+                            DaysAbsent = 0,
+                            Name = "Student 296 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 297,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3053),
+                            DaysAbsent = 0,
+                            Name = "Student 297 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 298,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3054),
+                            DaysAbsent = 0,
+                            Name = "Student 298 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 299,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3055),
+                            DaysAbsent = 0,
+                            Name = "Student 299 in Senior 4"
+                        },
+                        new
+                        {
+                            Id = 300,
+                            Age = 0,
+                            ClassId = 12,
+                            CreatedAt = new DateTime(2025, 7, 29, 12, 19, 9, 357, DateTimeKind.Utc).AddTicks(3056),
+                            DaysAbsent = 0,
+                            Name = "Student 300 in Senior 4"
                         });
                 });
 
@@ -1284,6 +4070,67 @@ namespace RegisterAPII.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpecialistSignature")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Date = new DateTime(2024, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Student showed excellent participation in the group project but needs to focus more on individual assignments.",
+                            SpecialistSignature = "Dr. Mona Fikry",
+                            Status = "Accepted",
+                            StudentName = "Ali Hassan"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Date = new DateTime(2024, 3, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Nour has shown significant improvement in her problem-solving skills this week.",
+                            SpecialistSignature = "Eng. Sherif Hamdy",
+                            Status = "Pending",
+                            StudentName = "Nour Tarek"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Date = new DateTime(2024, 3, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Laila was disruptive during the session and did not complete the assigned task. Recommend a follow-up.",
+                            SpecialistSignature = "Mr. Mohamed Abdelmged",
+                            Status = "Declined",
+                            StudentName = "Laila Mostafa"
+                        });
+                });
+
             modelBuilder.Entity("RegisterAPII.Models.Accounts", b =>
                 {
                     b.HasOne("RegisterAPII.Models.LoginAccount", "LoginAccount")
@@ -1301,6 +4148,15 @@ namespace RegisterAPII.Migrations
                     b.Navigation("LoginAccount");
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("RegisterAPII.Models.AttendanceRecord", b =>
+                {
+                    b.HasOne("RegisterAPII.Models.Note", "Note")
+                        .WithMany()
+                        .HasForeignKey("NoteId");
+
+                    b.Navigation("Note");
                 });
 
             modelBuilder.Entity("RegisterAPII.Models.ClassRoom", b =>

@@ -1,5 +1,6 @@
 ﻿// --- File: Repos/AuthService.cs ---
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RegisterAPII.DATA;
 using RegisterAPII.DTOs;
@@ -89,7 +90,9 @@ namespace RegisterAPII.Repos
             if (user == null)
                 return "Email not registered.";
 
-            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, hashedPassword);
+
 
             if (!isPasswordValid)
                 return "Incorrect password.";
@@ -98,6 +101,8 @@ namespace RegisterAPII.Repos
             var token = _jwtService.GenerateToken(user);
             return token;
         }
+
+
 
         private string GenerateEmail(string fullName, string nationalId)
         {

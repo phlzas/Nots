@@ -1,0 +1,13 @@
+﻿namespace RegisterAPII.DTOs
+{
+    public class NoteInputModel
+    {
+        public int StudentId { get; set; }
+        public int SessionNumber { get; set; }
+        public DateTime Date { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string NoteType { get; set; }
+        public string ImageUrl { get; set; }
+    }
+}
