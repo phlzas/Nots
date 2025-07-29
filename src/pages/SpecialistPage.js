@@ -1,67 +1,77 @@
-// --- File: src/pages/SpecialistPage.js (UPDATED TO BE THE FORM) ---
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api'; 
+import {sendNotification} from './SendNotificationFunction';
 
 // Import reusable components
 import AdminSidebar from './components/AdminSidebar';
 import AdminHeader from './components/AdminHeader';
 
-import { sendNotification } from './SendNotificationFunction'
-
 // Import CSS
 import './StudentDashboard.css';
 import './StaffDashboard.css';
-import './SpecialistReportForm.css'; // <-- Import the new form styles
+import './SpecialistReportForm.css';
 
 const SpecialistPage = () => {
     const navigate = useNavigate();
 
-    // State for each form field
-    const [date, setDate] = useState('');
+    // State for form fields
     const [studentName, setStudentName] = useState('');
     const [description, setDescription] = useState('');
     const [specialistSignature, setSpecialistSignature] = useState('');
-    const [managerSignature, setManagerSignature] = useState('');
 
-    const handleSubmit = (e) => {
+    // State for loading and error handling
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!date || !studentName || !description) {
-            alert('Please fill out Date, Student Name, and Description.');
+        setError(''); // Clear previous errors
+
+        if (!studentName || !description || !specialistSignature) {
+            setError('Please fill out Student Name, Description, and Specialist Signature.');
             return;
         }
 
-        // Create the new report object
-        const newReport = {
-            id: Date.now(), // Simple unique ID
-            date,
+        setIsLoading(true);
+
+        // This is the data structure your .NET API will expect for creating a report
+        const reportData = {
             studentName,
             description,
             specialistSignature,
-            managerSignature,
-            status: 'Pending' // All new reports are pending
         };
 
-        
+        try {
+            // --- STEP 1: Send the report to the database ---
+            const reportResponse = await api.post('/api/Reports', reportData);
 
-        // Get existing reports from localStorage, or start a new array
-        const existingReports = JSON.parse(localStorage.getItem('specialistReports')) || [];
-        
-        // Add the new report
-        const updatedReports = [...existingReports, newReport];
-        
-        // Save back to localStorage
-        localStorage.setItem('specialistReports', JSON.stringify(updatedReports));
+            if (reportResponse.status === 201) { // 201 Created is the success status for POST
+                
+                // --- STEP 2: If report is saved, send the notification ---
+                const notificationData = {
+                    title: "New Specialist Report Submitted",
+                    descreption: `A new report for student ${studentName} is awaiting your review.`,
+                    role: "Manager", // Target the notification to managers
+                    date: new Date().toISOString(),
+                    isRidden: false,
+                };
+                
+                // This is a "fire and forget" call, we don't strictly need to wait for it
+                // unless we want to show a success message for both actions.
+                sendNotification(notificationData.title, notificationData.descreption , notificationData.role);
 
-        alert('Report submitted successfully!');
-        
-        // Navigate to the reports page to see the new report
-        navigate('/admin/reports');
-    };
-
-    // this to send notification to manager when the report is submitted
-    const handleSendNotification = () => {
-        sendNotification(studentName, description);
+                // --- STEP 3: Success! ---
+                alert('Report submitted successfully and manager notified!');
+                navigate('/admin/reports'); // Navigate to the reports page
+            }
+        } catch (err) {
+            console.error("Failed to submit report:", err);
+            setError(err.response?.data?.message || 'An error occurred while submitting the report.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -71,13 +81,11 @@ const SpecialistPage = () => {
                 <AdminHeader />
                 <section className="content-area">
                     <div className="form-container card">
+                        {/* Use the new handleSubmit for the form's onSubmit event */}
                         <form onSubmit={handleSubmit}>
                             <h2>Submit Specialist Report</h2>
 
-                            <div className="form-group">
-                                <label htmlFor="date">Date</label>
-                                <input type="date" id="date" value={date} onChange={e => setDate(e.target.value)} required />
-                            </div>
+                            {error && <p className="form-error-message">{error}</p>}
 
                             <div className="form-group">
                                 <label htmlFor="studentName">Student Name</label>
@@ -86,20 +94,20 @@ const SpecialistPage = () => {
 
                             <div className="form-group">
                                 <label htmlFor="description">Report Description</label>
-                                <textarea id="description" placeholder="Write your observations or feedback here...." value={description} onChange={e => setDescription(e.target.value)} required></textarea>
+                                <textarea id="description" placeholder="Write your observations..." value={description} onChange={e => setDescription(e.target.value)} required></textarea>
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="specialistSig">Specialist Signature</label>
-                                <input type="text" id="specialistSig" value={specialistSignature} onChange={e => setSpecialistSignature(e.target.value)} />
+                                <label htmlFor="specialistSig">Specialist Signature (Your Name)</label>
+                                <input type="text" id="specialistSig" value={specialistSignature} onChange={e => setSpecialistSignature(e.target.value)} required />
                             </div>
                             
-                            <div className="form-group">
-                                <label htmlFor="managerSig">Manager Signature</label>
-                                <input type="text" id="managerSig" value={managerSignature} onChange={e => setManagerSignature(e.target.value)} />
-                            </div>
+                            {/* The date and manager signature are handled by the backend now */}
 
-                            <button type="submit" className="submit-btn" onClick={handleSendNotification}>Send to Manager</button>
+                            {/* This button now triggers the form's onSubmit */}
+                            <button type="submit" className="submit-btn" disabled={isLoading}>
+                                {isLoading ? 'Submitting...' : 'Send to Manager'}
+                            </button>
                         </form>
                     </div>
                 </section>

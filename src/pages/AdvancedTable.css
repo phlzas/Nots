@@ -1,0 +1,53 @@
+/* --- File: src/pages/AdvancedTable.css --- */
+
+.advanced-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.advanced-table thead tr {
+    background-color: #f11e41;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+}
+
+.advanced-table th,
+.advanced-table td {
+    padding: 12px 15px;
+}
+
+.advanced-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.advanced-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.advanced-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+.advanced-table tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.advanced-table th {
+    cursor: pointer;
+}
+
+.advanced-table th .fa-sort,
+.advanced-table th .fa-sort-up,
+.advanced-table th .fa-sort-down {
+    margin-left: 5px;
+    color: #fff;
+}

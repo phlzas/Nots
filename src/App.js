@@ -51,7 +51,7 @@ function App() {
     <Router>
       <Routes>
         {/* --- Public Routes --- */}
-        <Route path="/" element={<AdminNotificationPage   />} />                
+        <Route path="/" element={<StudentDashboard />} />                
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

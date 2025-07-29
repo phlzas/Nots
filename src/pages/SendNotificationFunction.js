@@ -4,13 +4,13 @@ import api from '../services/api';
 import { Title } from 'chart.js';
 
 
-export const sendNotification = async (title, descreption) => {
+export const sendNotification = async (title, descreption , role) => {
   try {
     
     await api.post('api/Notification', {
       title,
       descreption,
-      role : 'Admin', 
+      role, 
       date: new Date().toISOString(), 
       isRidden: false
     });

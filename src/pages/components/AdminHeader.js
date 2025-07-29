@@ -6,14 +6,15 @@ import '../StudentDashboard.css'; // Base styles
 import '../StaffDashboard.css';   // Admin styles
 import managerAvatar from '../../assets/manger.png';
 
-const AdminHeader = () => {
+const AdminHeader = ({ searchTerm, setSearchTerm }) => {
     const navigate = useNavigate();
 
     return (
         <header className="main-header">
             <div className="search-bar">
                 <IoSearchOutline className="search-icon" />
-                <input type="text" placeholder="Search..." />
+                <input type="text" placeholder="Search by student name..." value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)} />
             </div>
             <div className="top-nav">
                 <Link to="/admin/dashboard" className="top-nav-item">Admin Dashboard</Link>

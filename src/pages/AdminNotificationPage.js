@@ -1,6 +1,7 @@
+// --- File: AdminNotificationPage.jsx (Fully Corrected) ---
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import {
   IoHomeOutline, IoDocumentTextOutline, IoPeopleOutline, IoSettingsOutline, IoNotificationsOutline,
   IoPersonAddOutline, IoServerOutline
@@ -8,67 +9,73 @@ import {
 import dayjs from 'dayjs';
 import isToday from 'dayjs/plugin/isToday';
 import isYesterday from 'dayjs/plugin/isYesterday';
+
 import './StudentDashboard.css';
 import './StaffDashboard.css';
 import './Notifications.css';
+
 import logo from '../assets/logo.png';
 import managerAvatar from '../assets/manger.png';
 import api from '../services/api';
+
 dayjs.extend(isToday);
 dayjs.extend(isYesterday);
+
 const AdminNotificationPage = () => {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
   const [filter, setFilter] = useState('all');
   const [selectedNotification, setSelectedNotification] = useState(null);
   const [showNotificationModal, setShowNotificationModal] = useState(false);
+
   useEffect(() => {
     const fetchNotifications = async () => {
       try {
-        // Step 1: Fetch the raw data from the API
-        const response = await api.get('/api/Notification/all'); // Removed the second argument
-
-        // Step 2: Transform the API data into the format the component needs
-        const transformedNotifications = response.data.map(apiNotification => {
-          return {
-            id: apiNotification.id,
-            // Combine title and description into a single 'message'
-            message: `${apiNotification.title}: ${apiNotification.descreption}`,
-            // Map the 'role' to a 'type' (you can add more logic here if needed)
-            type: apiNotification.role.toLowerCase().includes('report') ? 'report' : 'system',
-            // Use the 'date' field for the 'time' property
-            time: apiNotification.date,
-            // Map 'isRidden' to 'unread'. Note the logic is inverted:
-            // isRidden=false means it's unread=true.
-            unread: !apiNotification.isRidden
-          };
-        });
-
-        // Step 3: Set the state with the new, transformed data
+        const response = await api.get('/api/Notification/all');
+        const transformedNotifications = response.data.map(apiNotification => ({
+          id: apiNotification.id,
+          message: `${apiNotification.title}: ${apiNotification.descreption}`,
+          type: apiNotification.role.toLowerCase().includes('report') ? 'report' : 'system',
+          time: apiNotification.date,
+          // Use 'unread' as the consistent property name inside the component
+          unread: !apiNotification.isRidden
+        }));
         setNotifications(transformedNotifications);
-
       } catch (err) {
         console.error("Failed to fetch notifications:", err);
-        // fallback mock data
-        setNotifications([
-          { id: 1, type: 'report', message: 'Monthly attendance report for Engineering is ready.', time: Date.now(), unread: true },
-          { id: 2, type: 'system', message: 'New Staff Member "Hassan Ali" was added.', time: Date.now() - 86400000, unread: true },
-          { id: 3, type: 'system', message: 'Server backup completed successfully.', time: Date.now() - 86400000, unread: false },
-          { id: 4, type: 'report', message: 'Quarterly financial summary has been generated.', time: Date.now() - 3 * 86400000, unread: false },
-        ]);
       }
     };
-
     fetchNotifications();
-}, []);
+  }, []);
+
   const handleNavigate = (path) => navigate(path);
-  const handleNotificationClick = (notification) => {
+
+  // --- THIS IS THE CORRECTED CLICK HANDLER ---
+  const handleNotificationClick = async (notification) => {
+    // Show the modal immediately for a good user experience
     setSelectedNotification(notification);
     setShowNotificationModal(true);
-    setNotifications(prev =>
-      prev.map(n => n.id === notification.id ? { ...n, unread: n.isRidden } : n)
-    );
-};
+
+    // Only update if the notification is currently unread
+    if (notification.unread) {
+      // 1. Optimistic UI Update: Update the UI instantly.
+      setNotifications(prev =>
+        prev.map(n => (n.id === notification.id ? { ...n, unread: false } : n))
+      );
+
+      try {
+        // 2. API Call: Tell the backend to save the change permanently.
+        await api.put(`/api/Notification/${notification.id}/read`);
+      } catch (error) {
+        console.error('Failed to mark notification as read:', error);
+        // Optional but recommended: If the API fails, revert the UI change
+        setNotifications(prev =>
+          prev.map(n => (n.id === notification.id ? { ...n, unread: true } : n))
+        );
+      }
+    }
+  };
+
   const getIcon = (type) => {
     switch (type) {
       case 'report': return <IoDocumentTextOutline />;
@@ -76,6 +83,7 @@ const AdminNotificationPage = () => {
       default: return <IoPersonAddOutline />;
     }
   };
+
   const getTitle = (type) => {
     switch (type) {
       case 'report': return 'Report';
@@ -83,32 +91,31 @@ const AdminNotificationPage = () => {
       default: return 'General';
     }
   };
+  
+  // --- CORRECTED THIS FUNCTION ---
   const groupNotificationsByDay = (notificationsList) => {
-    const grouped = {
-      Today: [],
-      Yesterday: [],
-      Earlier: []
-    };
+    const grouped = { Today: [], Yesterday: [], Earlier: [] };
     notificationsList.forEach(n => {
-      const date = dayjs(n.date);
-      if (date.isToday()) {
-        grouped.Today.push(n);
-      } else if (date.isYesterday()) {
-        grouped.Yesterday.push(n);
-      } else {
-        grouped.Earlier.push(n);
-      }
+      // Use 'time' property, which is what you created in the transformation
+      const date = dayjs(n.time); 
+      if (date.isToday()) grouped.Today.push(n);
+      else if (date.isYesterday()) grouped.Yesterday.push(n);
+      else grouped.Earlier.push(n);
     });
-
     return grouped;
   };
+
+  // --- CORRECTED THIS LOGIC ---
   const filteredNotifications = notifications.filter(n => {
-    if (filter === 'unread') return n.unread;
+    if (filter === 'unread') return n.unread; // Use the consistent 'unread' property
     return true;
   });
+
   const grouped = groupNotificationsByDay(filteredNotifications);
+
   return (
     <div className="dashboard-layout">
+      {/* Sidebar and Header have no changes needed */}
       <aside className="sidebar">
         <div className="logo-container"><img src={logo} alt="Logo" className="logo" /></div>
         <div className="user-profile">
@@ -124,6 +131,7 @@ const AdminNotificationPage = () => {
           </ul>
         </nav>
       </aside>
+
       <main className="main-content">
         <header className="main-header">
           <div className="header-actions" style={{ marginLeft: 'auto' }}>
@@ -158,6 +166,7 @@ const AdminNotificationPage = () => {
                 <h3 style={{ color: '#555', marginBottom: '10px' }}>{day}</h3>
                 <ul className="notification-list">
                   {items.map(n => (
+                    // --- CORRECTED THIS LOGIC ---
                     <li
                       key={n.id}
                       className={`notification-item ${n.unread ? 'unread' : ''}`}
@@ -178,7 +187,7 @@ const AdminNotificationPage = () => {
         </section>
       </main>
 
-      {/* Notification Modal */}
+      {/* Modal has no changes needed */}
       {showNotificationModal && selectedNotification && (
         <div className="modal-overlay" onClick={() => setShowNotificationModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -194,4 +203,5 @@ const AdminNotificationPage = () => {
     </div>
   );
 };
+
 export default AdminNotificationPage;
