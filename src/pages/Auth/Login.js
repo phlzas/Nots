@@ -25,19 +25,12 @@ const Login = () => {
     setIsLoading(true);
     try {
       const response = await api.post('/api/Auth/login', formData);
-      if (
-        formData.email === 'Zeyad.shosha@outlook.com' && 
-        formData.password === '12345678'
-      ){
-        alert("Welcome back, Zeyad Shosha!");
-        navigate('/admin/dashboard');
-        setIsLoading(false);
-        return;
-      }
       if (response.status === 200 && response.data.token) {
+        console.log("Login successful:", response.data);
         localStorage.setItem("token", response.data.token);
         const tokenPayload = JSON.parse(atob(response.data.token.split('.')[1]));
         const userRoleClaim = tokenPayload.role;
+        console.log("User role from token:", userRoleClaim);
         const userIdClaim = tokenPayload.nameid;
         if (!userRoleClaim || !userIdClaim) {
             setError("Token is missing required user ID or Role. Please contact support.");
@@ -46,6 +39,7 @@ const Login = () => {
         }
         const userRole = userRoleClaim.toLowerCase();
         const normalizedUserRole = userRole === 'superadmin' ? 'super admin' : userRole;
+        console.log("Normalized user role:", normalizedUserRole);
         localStorage.setItem("userRole", normalizedUserRole);
         const userToStore = {
             id: userIdClaim, name: tokenPayload.fullName || "User",
@@ -53,10 +47,11 @@ const Login = () => {
         };
         localStorage.setItem('user', JSON.stringify(userToStore));
         if (normalizedUserRole === 'super admin') navigate('/admin/dashboard');
+        else if (normalizedUserRole === 'user') navigate('/homepage');
         else if (normalizedUserRole === 'admin') navigate('/dashboard');
         else if (normalizedUserRole === 'student') navigate('/profile');
         else navigate('/');
-      }
+      }   
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please try again.');
       setIsLoading(false);

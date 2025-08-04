@@ -1,6 +1,7 @@
 // --- File: src/App.js (FINAL AND CORRECTED) ---
 
 import React from 'react';
+import { AbsenceProvider } from './contexts/AbsenceContext';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 
 // --- Component Imports ---
@@ -48,10 +49,13 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
 function App() {
   return (
-    <Router>
+    <AbsenceProvider>
+      <Router>
       <Routes>
         {/* --- Public Routes --- */}
-        <Route path="/" element={<StudentDashboard />} />                
+        <Route path="/" element={<Login />} />                
+        {/* <Route path="/no" element={<AdminNotificationPage />} />                
+        <Route path="/re" element={<ReportsPage />} />                 */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -92,8 +96,9 @@ function App() {
         </Route>
         
         <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </AbsenceProvider>
   );
 }
 

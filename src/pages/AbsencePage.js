@@ -1,12 +1,14 @@
-// --- File: src/pages/AbsencePage.js (Updated with Session Filter) ---
+// --- File: src/pages/AbsencePage.js (Updated with Context) ---
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAbsence } from '../contexts/AbsenceContext';
+import { FiTrash2 } from 'react-icons/fi';
 
 // Import reusable components and data
 import TeacherSidebar from './components/TeacherSidebar';
 import AppHeader from './components/AppHeader';
-import { mockAttendanceLogs, gradesData } from '../mock-attendance-page ';
+import { gradesData } from '../mock-attendance-page ';
 import '../pages/Absence.css';
 
 // --- ADDED: Data for the new Session filter dropdown ---
@@ -16,15 +18,22 @@ const AbsencePage = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
-    // State for all logs and filtered logs
-    const [allLogs, setAllLogs] = useState([]);
-    const [filteredLogs, setFilteredLogs] = useState([]);
-
+    // Get absences from context
+    const { getAbsences, removeAbsence } = useAbsence();
+    
     // State for filter controls
     const [selectedGrade, setSelectedGrade] = useState('');
     const [selectedClass, setSelectedClass] = useState('');
     const [selectedDate, setSelectedDate] = useState('');
-    const [selectedSession, setSelectedSession] = useState(''); // --- ADDED: State for session filter
+    const [selectedSession, setSelectedSession] = useState('');
+    
+    // Get filtered absences based on current filters
+    const filteredAbsences = getAbsences({
+        grade: selectedGrade || undefined,
+        class: selectedClass || undefined,
+        session: selectedSession || undefined,
+        date: selectedDate || undefined
+    });
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -33,32 +42,9 @@ const AbsencePage = () => {
         } else {
             navigate('/');
         }
-        
-        const absenceLogs = mockAttendanceLogs.filter(log => log.status === 'Absent');
-        setAllLogs(absenceLogs);
-        setFilteredLogs(absenceLogs);
     }, [navigate]);
 
-    // --- MODIFIED: Effect now includes the session filter ---
-    useEffect(() => {
-        let logs = allLogs;
 
-        if (selectedGrade) {
-            logs = logs.filter(log => log.grade === selectedGrade);
-        }
-        if (selectedClass) {
-            logs = logs.filter(log => log.class === selectedClass);
-        }
-        if (selectedSession) {
-            // Note: We parse the session to a number to ensure correct comparison
-            logs = logs.filter(log => log.session === parseInt(selectedSession, 10));
-        }
-        if (selectedDate) {
-            logs = logs.filter(log => log.date === selectedDate);
-        }
-
-        setFilteredLogs(logs);
-    }, [selectedGrade, selectedClass, selectedSession, selectedDate, allLogs]);
     
     // Reset class and session filters when grade changes
     const handleGradeChange = (grade) => {
@@ -125,22 +111,40 @@ const AbsencePage = () => {
                             <table className="absence-table">
                                 <thead>
                                     <tr>
-                                        <th>Student Name</th><th>Grade</th><th>Class</th><th>Session</th>
-                                        <th>Date</th><th>Status</th><th>Behavior</th>
+                                        <th>Student Name</th>
+                                        <th>Grade</th>
+                                        <th>Class</th>
+                                        <th>Session</th>
+                                        <th>Date</th>
+                                        <th>Recorded At</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {filteredLogs.length > 0 ? (
-                                        filteredLogs.map(log => (
-                                            <tr key={log.id}>
-                                                <td>{log.studentName}</td><td>{log.grade}</td><td>{log.class}</td>
-                                                <td>Session {log.session}</td><td>{log.date}</td>
-                                                <td><span className={`status-badge status-${log.status.toLowerCase()}`}>{log.status}</span></td>
-                                                <td><span className={`behavior-badge behavior-${log.behavior?.toLowerCase().replace(' ', '-') || 'na'}`}>{log.behavior || 'N/A'}</span></td>
+                                    {filteredAbsences.length > 0 ? (
+                                        filteredAbsences.map((absence) => (
+                                            <tr key={absence.id}>
+                                                <td>{absence.studentName}</td>
+                                                <td>{absence.grade}</td>
+                                                <td>{absence.class}</td>
+                                                <td>{absence.session}</td>
+                                                <td>{absence.date}</td>
+                                                <td>{new Date(absence.recordedAt).toLocaleString()}</td>
+                                                <td>
+                                                    <button 
+                                                        className="delete-btn"
+                                                        onClick={() => removeAbsence(absence.id)}
+                                                        title="Delete record"
+                                                    >
+                                                        <FiTrash2 />
+                                                    </button>
+                                                </td>
                                             </tr>
                                         ))
                                     ) : (
-                                        <tr><td colSpan="7" className="no-records-found">No absence records match the current filters.</td></tr>
+                                        <tr>
+                                            <td colSpan="6" className="no-records">No absence records found</td>
+                                        </tr>
                                     )}
                                 </tbody>
                             </table>

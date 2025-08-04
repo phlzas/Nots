@@ -1,44 +1,76 @@
-// --- File: src/pages/StudentListPage.js (UPDATED with Add Button) ---
+// --- File: src/pages/StudentListPage.js (UPDATED with Grade Calculation) ---
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // 1. Import useNavigate
-import { IoAddCircleOutline } from 'react-icons/io5'; // 2. Import the icon
+import { useNavigate } from 'react-router-dom';
+import { IoAddCircleOutline } from 'react-icons/io5';
 
-// Import reusable components
+// Import reusable components & services
 import AdminSidebar from './components/AdminSidebar';
 import AdminHeader from './components/AdminHeader';
+import api from '../services/api';
 
 // Import CSS
 import './StudentDashboard.css';
 import './StaffDashboard.css';
 
-// Mock Data for Students (unchanged)
-const mockStudents = {
-    junior: [
-        { id: 'J-101', name: 'Ali Hassan', grade: 'Junior' },
-        { id: 'J-102', name: 'Sara Adel', grade: 'Junior' },
-        { id: 'J-103', name: 'Youssef Karim', grade: 'Junior' },
-    ],
-    wheeler: [
-        { id: 'W-201', name: 'Nour Tarek', grade: 'Wheeler' },
-        { id: 'W-202', name: 'Omar Khaled', grade: 'Wheeler' },
-    ],
-    senior: [
-        { id: 'S-301', name: 'Laila Mostafa', grade: 'Senior' },
-        { id: 'S-302', name: 'Khaled Ibrahim', grade: 'Senior' },
-        { id: 'S-303', name: 'Hana Gamal', grade: 'Senior' },
-    ]
+// *** 1. ADD THE HELPER FUNCTION HERE ***
+const getGradeFromClassId = (classId) => {
+  if (classId >= 1 && classId <= 4) return 'Junior';
+  if (classId >= 5 && classId <= 8) return 'Wheeler';
+  if (classId >= 9 && classId <= 12) return 'Senior';
+  return 'Unknown';
 };
 
+
 const StudentListPage = () => {
-    const navigate = useNavigate(); // 3. Initialize the navigate function
-    const [selectedGrade, setSelectedGrade] = useState('junior');
-    const [students, setStudents] = useState([]);
+    const navigate = useNavigate();
 
+    // State management remains the same
+    const [allStudents, setAllStudents] = useState([]);
+    const [filteredStudents, setFilteredStudents] = useState([]);
+    const [selectedGrade, setSelectedGrade] = useState('Junior');
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+
+    // This effect fetches all students and processes them
     useEffect(() => {
-        setStudents(mockStudents[selectedGrade]);
-    }, [selectedGrade]);
+        const fetchAllStudents = async () => {
+            setIsLoading(true);
+            setError('');
+            try {
+                const response = await api.get('/api/StudentProfile');
+                
+                // *** 2. PROCESS THE DATA AFTER FETCHING ***
+                // Use .map() to create a new array where each student
+                // object has the new 'grade' property.
+                const studentsWithGrade = response.data.map(student => ({
+                    ...student, // Copy all original student properties
+                    grade: getGradeFromClassId(student.classId) // Add the new grade
+                }));
 
+                // *** 3. SET STATE WITH THE PROCESSED DATA ***
+                setAllStudents(studentsWithGrade);
+
+            } catch (err) {
+                console.error('Failed to fetch students:', err);
+                setError('Failed to load student data. Please try again.');
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchAllStudents();
+    }, []); // Runs only once
+
+    // This filtering effect requires NO CHANGES. It will now work
+    // correctly because 'allStudents' contains the 'grade' property.
+    useEffect(() => {
+        if (!allStudents) return;
+        const results = allStudents.filter(student => student.grade === selectedGrade);
+        setFilteredStudents(results);
+    }, [selectedGrade, allStudents]);
+
+    // The entire JSX render block requires NO CHANGES.
     return (
         <div className="dashboard-layout">
             <AdminSidebar />
@@ -46,12 +78,11 @@ const StudentListPage = () => {
                 <AdminHeader />
                 <section className="content-area">
                     <div className="attendance-table-container card">
-                        {/* --- 4. THIS HEADER SECTION IS MODIFIED --- */}
                         <div className="content-header student-list-filter">
                             <div className="header-left-side">
                                 <h2>Student List</h2>
-                                <button 
-                                    className="btn-add-staff" // Reusing the green "add" button style
+                                <button
+                                    className="btn-add-staff"
                                     onClick={() => navigate('/register')}
                                 >
                                     <IoAddCircleOutline />
@@ -60,38 +91,46 @@ const StudentListPage = () => {
                             </div>
                             <div className="filter-group">
                                 <label htmlFor="grade-select">Select Grade:</label>
-                                <select 
-                                    id="grade-select" 
-                                    value={selectedGrade} 
+                                <select
+                                    id="grade-select"
+                                    value={selectedGrade}
                                     onChange={(e) => setSelectedGrade(e.target.value)}
+                                    disabled={isLoading}
                                 >
-                                    <option value="junior">Junior</option>
-                                    <option value="wheeler">Wheeler</option>
-                                    <option value="senior">Senior</option>
+                                    <option value="Junior">Junior</option>
+                                    <option value="Wheeler">Wheeler</option>
+                                    <option value="Senior">Senior</option>
                                 </select>
                             </div>
                         </div>
 
-                        {/* Table remains the same */}
                         <div className="table-responsive">
-                            <table className="attendance-table">
-                                <thead>
-                                    <tr>
-                                        <th>Student Name</th>
-                                        <th>ID</th>
-                                        <th>Grade</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                {students.map((student) => (
-                                    <tr key={student.id}>
-                                        <td data-label="Student Name">{student.name}</td>
-                                        <td data-label="ID">{student.id}</td>
-                                        <td data-label="Grade">{student.grade}</td>
-                                    </tr>
-                                ))}
-                                </tbody>
-                            </table>
+                            {isLoading ? (
+                                <p className="loading-text">Loading students...</p>
+                            ) : error ? (
+                                <p className="error-text">{error}</p>
+                            ) : filteredStudents.length === 0 ? (
+                                <p className="empty-text">No students found for this grade.</p>
+                            ) : (
+                                <table className="attendance-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Student Name</th>
+                                            <th>ID</th>
+                                            <th>Grade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filteredStudents.map((student) => (
+                                            <tr key={student.id}>
+                                                <td data-label="Student Name">{student.name}</td>
+                                                <td data-label="ID">{student.id}</td>
+                                                <td data-label="Grade">{student.grade}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            )}
                         </div>
                     </div>
                 </section>

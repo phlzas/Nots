@@ -39,6 +39,7 @@ const AddNoteModal = ({
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [imagePreview, setImagePreview] = useState('');
+  const [category, setCategory] = useState('school'); // Default to school
   const fileRef = useRef(null);
 
   useEffect(() => {
@@ -46,6 +47,7 @@ const AddNoteModal = ({
       setTitle('');
       setDesc('');
       setImagePreview('');
+      setCategory('school'); // Reset to default
     }
   }, [open]);
 
@@ -62,6 +64,7 @@ const AddNoteModal = ({
     title: title.trim() || undefined,
     description: desc.trim() || undefined,
     imageUrl: imagePreview || undefined,
+    category: category, // Add category to the note
   });
 
   const handleAddGood = () => {
@@ -91,6 +94,18 @@ const AddNoteModal = ({
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+        </div>
+
+        <div className="note-modal-field">
+          <label>Category</label>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="school">School</option>
+            <option value="capstone">Capstone</option>
+            <option value="competition">Competition</option>
+          </select>
         </div>
 
         <div className="note-modal-field">

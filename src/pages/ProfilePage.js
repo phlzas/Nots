@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api'; // Assuming 'api' is your configured axios instance
 import './ProfilePage.css';
 import {
   FiEdit,
@@ -18,16 +18,212 @@ import {
   FiAlertTriangle
 } from 'react-icons/fi';
 
+// (EditModal, LogoutConfirmModal, and NoteCard components go here, unchanged from the final version below)
+// ...
+
 /* ------------------------------------------------------------------
- * Edit Profile Modal (unchanged except minor prop destructure safety)
+ * Main Profile Page Component
  * ------------------------------------------------------------------ */
-const EditModal = ({ user, onClose, onSave, onDelete }) => {
+const ProfilePage = () => {
+  // --- State Management ---
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isLogoutModalOpen, setLogoutModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  // --- Data Fetching ---
+  // Central function to fetch user data, wrapped in useCallback for performance.
+  // This prevents it from being recreated on every render.
+  const fetchFullProfile = useCallback(async (userId) => {
+    setIsLoading(true);
+    setError('');
+    try {
+      const response = await api.get(`/api/StudentProfile/${userId}`);
+      setUser(response.data);
+      localStorage.setItem('user', JSON.stringify(response.data)); // Keep localStorage in sync
+    } catch (err) {
+      console.error('Fetch Profile Error:', err.response || err);
+      setError('Could not load your profile. Please try logging in again.');
+      setUser(null); // Clear user data on critical fetch error
+      localStorage.removeItem('user');
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // --- Effects ---
+  // On component mount, get user ID from localStorage and fetch the profile.
+  useEffect(() => {
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const storedUser = JSON.parse(userString);
+      if (storedUser && storedUser.id) {
+        fetchFullProfile(storedUser.id);
+      } else {
+        navigate('/');
+      }
+    } else {
+      navigate('/');
+    }
+  }, [navigate, fetchFullProfile]);
+
+  // --- Event Handlers ---
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
+  // Called from the modal after a successful PUT request.
+  // Re-fetches data to ensure UI has the latest information.
+  const handleProfileUpdate = (userId) => {
+    fetchFullProfile(userId);
+  };
+
+  // Passed to the modal to handle the delete API call.
+  const handleProfileDelete = async (userId) => {
+    // This function now returns a promise that resolves or rejects,
+    // allowing the modal to handle its own loading and error states.
+    try {
+      await api.delete(`/api/StudentProfile/${userId}`);
+      handleLogout(); // On success, log out and redirect
+    } catch (err) {
+      console.error('Delete Profile Error:', err.response || err);
+      // Re-throw the error so the modal's catch block can handle it
+      throw new Error('Failed to delete the profile.');
+    }
+  };
+
+  // --- Child Components ---
+  const InfoDetail = ({ Icon, label, value }) => (
+    <div className="info-detail">
+      <Icon className="info-icon" />
+      <div className="info-text">
+        <span className="info-label">{label}</span>
+        <span className="info-value">{value ?? 'N/A'}</span>
+      </div>
+    </div>
+  );
+
+  // --- Render Logic ---
+  if (isLoading) {
+    return <div className="loading-container">Loading Profile...</div>;
+  }
+
+  if (error || !user) {
+    return (
+      <div className="loading-container">
+        {error}{' '}
+        <button className="action-btn secondary" onClick={handleLogout}>Login</button>
+      </div>
+    );
+  }
+
+  if (user.classId >= 1 && user.classId <= 4) {
+    user.grade = 'Junior';
+  } else if (user.classId >= 5 && user.classId <= 8) {
+    user.grade = 'Wheeler';
+  } else if (user.classId >= 9 && user.classId <= 12) {
+    user.grade = 'Senior';
+  }
+
+  const goodNotes = user.goodNotes || ['Listen carefully', 'Raise hand to speak', 'Respect others'];
+  const badNotes = user.badNotes || ['Talk during class', 'Use phone', 'Interrupt others'];
+
+  return (
+    <div className="profile-page-container">
+      <div className="profile-wrapper">
+        <Link to={user.role === 'admin' ? '/dashboard' : '/student-dashboard'} className="back-link">
+          <FiArrowLeft /> Back to Dashboard
+        </Link>
+
+        <div className="profile-content-card">
+          {/* Sidebar */}
+          <div className="profile-sidebar">
+            <img
+              src={
+                user.imageP ||
+                `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=d90429&color=fff&size=128&bold=true`
+              }
+              alt="Profile"
+              className="profile-avatar"
+            />
+            <h2 className="profile-name">{user.name}</h2>
+            <p className="profile-email">{user.email}</p>
+            <div className="profile-actions">
+              <button onClick={() => setEditModalOpen(true)} className="action-btn primary">
+                <FiEdit /> Edit Profile
+              </button>
+              <button onClick={() => setLogoutModalOpen(true)} className="action-btn secondary">
+                <FiLogOut /> Log out
+              </button>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="profile-main-content">
+            <div className="info-section">
+              <h4>Account Details</h4>
+              <div className="details-grid">
+                <InfoDetail Icon={FiPhone} label="Phone Number" value={user.phoneNumber} />
+                <InfoDetail Icon={FiAward} label="Grade" value={user.grade} />
+                <InfoDetail Icon={FiHash} label="Age" value={user.age} />
+                <InfoDetail Icon={FiCalendar} label="Days Absent" value={user.daysAbsent || 0} />
+              </div>
+            </div>
+
+            <div className="info-section">
+              <h4>Location Information</h4>
+              <div className="details-grid">
+                <InfoDetail Icon={FiMapPin} label="Location / City" value={user.city} />
+                <InfoDetail Icon={FiGlobe} label="Country" value={user.country} />
+              </div>
+            </div>
+
+            <div className="notes-section">
+              <NoteCard variant="good" title="Good Notes" notes={goodNotes} />
+              <NoteCard variant="bad" title="Bad Notes" notes={badNotes} />
+            </div>
+
+            <div className="privacy-notice">
+              <p>This information is private and will not be shared.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {isEditModalOpen && (
+        <EditModal
+          user={user}
+          onClose={() => setEditModalOpen(false)}
+          onSaveSuccess={handleProfileUpdate}
+          onDelete={handleProfileDelete}
+        />
+      )}
+
+      {isLogoutModalOpen && (
+        <LogoutConfirmModal
+          name={user.name}
+          onCancel={() => setLogoutModalOpen(false)}
+          onConfirm={handleLogout}
+        />
+      )}
+    </div>
+  );
+};
+
+/* ------------------------------------------------------------------
+ * Edit Profile Modal
+ * ------------------------------------------------------------------ */
+const EditModal = ({ user, onClose, onSaveSuccess, onDelete }) => {
   const [editableUser, setEditableUser] = useState(user);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value, type } = e.target;
+    // Ensure number inputs are stored as numbers or empty strings
     const processedValue =
       type === 'number' ? (value === '' ? '' : parseInt(value, 10)) : value;
     setEditableUser((prev) => ({ ...prev, [name]: processedValue }));
@@ -37,25 +233,29 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
     setIsLoading(true);
     setError('');
     try {
-      // Note: Ensure backend endpoint exists.
-      const url = `https://elsewedywebsite.runasp.net/api/SignUp/update/${user.id}`;
-      await axios.put(url, editableUser);
-      onSave(editableUser);
-      onClose();
+      await api.put(`/api/StudentProfile/${editableUser.id}`, editableUser);
+      onSaveSuccess(editableUser.id); // Trigger re-fetch on parent
+      onClose(); // Close modal on success
     } catch (err) {
-      setError('Failed to update profile.');
+      console.error('Update Error:', err.response || err);
+      const message = err.response?.data?.title || 'Failed to update profile.';
+      setError(`${message} Please check your inputs and try again.`);
+    } finally {
       setIsLoading(false);
     }
   };
 
-  const handleDeleteProfile = async () => {
-    if (window.confirm('Are you sure? This action is permanent.')) {
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to permanently delete your profile?')) {
       setIsLoading(true);
       setError('');
       try {
+        // The onDelete function passed from the parent handles the API call and redirection
         await onDelete(user.id);
+        // No need to do anything else, as the parent will redirect
       } catch (err) {
-        setError('Failed to delete profile.');
+        // If the parent's onDelete fails, show the error here
+        setError(err.message);
         setIsLoading(false);
       }
     }
@@ -78,6 +278,7 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
         )}
 
         <div className="modal-body">
+          {/* Input fields remain the same */}
           <div className="modal-input-group full-width">
             <label>Full Name</label>
             <input
@@ -100,8 +301,8 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
             <label>Phone Number</label>
             <input
               type="text"
-              name="phoneNum"
-              value={editableUser.phoneNum || ''}
+              name="phoneNumber"
+              value={editableUser.phoneNumber || ''}
               onChange={handleInputChange}
             />
           </div>
@@ -115,20 +316,11 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
             />
           </div>
           <div className="modal-input-group">
-            <label>Grade</label>
-            <input
-              type="text"
-              name="grade"
-              value={editableUser.grade || ''}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="modal-input-group">
             <label>Location / City</label>
             <input
               type="text"
-              name="location"
-              value={editableUser.location || ''}
+              name="city"
+              value={editableUser.city || ''}
               onChange={handleInputChange}
             />
           </div>
@@ -144,25 +336,11 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
         </div>
 
         <div className="modal-footer">
-          <button
-            onClick={handleDeleteProfile}
-            className="modal-btn delete"
-            disabled={isLoading}
-          >
+          <button onClick={handleDelete} className="modal-btn delete" disabled={isLoading}>
             <FiTrash2 /> Delete
           </button>
-          <button
-            onClick={handleSaveChanges}
-            className="modal-btn save"
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              'Saving...'
-            ) : (
-              <>
-                <FiSave /> Save Changes
-              </>
-            )}
+          <button onClick={handleSaveChanges} className="modal-btn save" disabled={isLoading}>
+            {isLoading ? 'Saving...' : <><FiSave /> Save Changes</>}
           </button>
         </div>
       </div>
@@ -171,7 +349,7 @@ const EditModal = ({ user, onClose, onSave, onDelete }) => {
 };
 
 /* ------------------------------------------------------------------
- * NEW: Logout Confirmation Modal  // *** ADDED
+ * Logout Confirmation Modal (Unchanged)
  * ------------------------------------------------------------------ */
 const LogoutConfirmModal = ({ name, onCancel, onConfirm }) => (
   <div className="modal-overlay">
@@ -181,18 +359,10 @@ const LogoutConfirmModal = ({ name, onCancel, onConfirm }) => (
       <p className="logout-modal-text">Are you sure you want to log out?</p>
       {name && <p className="logout-modal-user">{name}</p>}
       <div className="logout-modal-actions">
-        <button
-          type="button"
-          className="logout-modal-btn cancel"
-          onClick={onCancel}
-        >
+        <button type="button" className="logout-modal-btn cancel" onClick={onCancel}>
           Cancel
         </button>
-        <button
-          type="button"
-          className="logout-modal-btn confirm"
-          onClick={onConfirm}
-        >
+        <button type="button" className="logout-modal-btn confirm" onClick={onConfirm}>
           Log Out
         </button>
       </div>
@@ -201,7 +371,7 @@ const LogoutConfirmModal = ({ name, onCancel, onConfirm }) => (
 );
 
 /* ------------------------------------------------------------------
- * Small inline component for displaying Good / Bad Notes  // *** ADDED
+ * NoteCard Component (Unchanged)
  * ------------------------------------------------------------------ */
 const NoteCard = ({ variant, title, notes }) => (
   <div className={`note-card ${variant}`}>
@@ -215,223 +385,5 @@ const NoteCard = ({ variant, title, notes }) => (
     </ul>
   </div>
 );
-
-/* ------------------------------------------------------------------
- * Main Profile Page Component
- * ------------------------------------------------------------------ */
-const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false); // *** ADDED
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const fetchFullProfile = async (userId, basicUser) => {
-      try {
-        const response = await axios.get(
-          `https://elsewedywebsite.runasp.net/api/SignUp/${userId}`
-        );
-        const fullUserData = response.data;
-        setUser(fullUserData);
-        localStorage.setItem('user', JSON.stringify(fullUserData));
-      } catch (err) {
-        console.error('Failed to fetch full profile:', err);
-        setError('Could not load full profile. Some details may be outdated.');
-        setUser(basicUser); // fallback
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const userString = localStorage.getItem('user');
-    if (userString) {
-      const basicUser = JSON.parse(userString);
-      if (basicUser && basicUser.id) {
-        // If we already have the expanded profile, skip fetch.
-        if (basicUser.phoneNum !== undefined) {
-          setUser(basicUser);
-          setIsLoading(false);
-        } else {
-          fetchFullProfile(basicUser.id, basicUser);
-        }
-      } else {
-        navigate('/');
-      }
-    } else {
-      navigate('/');
-    }
-  }, [navigate]);
-
-  // Original logout logic remains, but now triggered from modal confirm.
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate('/');
-  };
-
-  const handleSaveFromModal = (updatedUser) => {
-    setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
-  };
-
-  const handleDeleteFromModal = async (userId) => {
-    await axios.delete(
-      `https://elsewedywebsite.runasp.net/api/SignUp/delete/${userId}`
-    );
-    handleLogout();
-  };
-
-  const InfoDetail = ({ Icon, label, value }) => (
-    <div className="info-detail">
-      <Icon className="info-icon" />
-      <div className="info-text">
-        <span className="info-label">{label}</span>
-        <span className="info-value">{value ?? 'N/A'}</span>
-      </div>
-    </div>
-  );
-
-  if (isLoading) {
-    return <div className="loading-container">Loading Profile...</div>;
-  }
-  if (!user) {
-    return (
-      <div className="loading-container">
-        Error loading profile. Please{' '}
-        <button onClick={handleLogout}>login again</button>.
-      </div>
-    );
-  }
-
-  /* Defaults for demo if API does not yet provide them.  // *** ADDED */
-  const defaultGoodNotes = [
-    'Listen carefully',
-    'Raise hand to speak',
-    'Respect others'
-  ];
-  const defaultBadNotes = [
-    'Talk during class',
-    'Use phone',
-    'Interrupt others'
-  ];
-
-  const goodNotes = user.goodNotes || defaultGoodNotes;
-  const badNotes = user.badNotes || defaultBadNotes;
-
-  return (
-    <div className="profile-page-container">
-      <div className="profile-wrapper">
-        {/* Ensure the link back goes to a valid route for the user */}
-        <Link
-          to={user.role === 'admin' ? '/dashboard' : '/some-other-student-dashboard'}
-          className="back-link"
-        >
-          <FiArrowLeft /> Back to Dashboard
-        </Link>
-
-        <div className="profile-content-card">
-          {/* Sidebar */}
-          <div className="profile-sidebar">
-            <img
-              src={
-                user.imageP ||
-                `https://ui-avatars.com/api/?name=${user.name.replace(
-                  ' ',
-                  '+'
-                )}&background=d90429&color=fff&size=128&bold=true`
-              }
-              alt="Profile"
-              className="profile-avatar"
-            />
-            <h2 className="profile-name">{user.name}</h2>
-            <p className="profile-email">{user.email}</p>
-            <div className="profile-actions">
-              <button
-                onClick={() => setIsModalOpen(true)}
-                className="action-btn primary"
-              >
-                <FiEdit /> Edit Profile
-              </button>
-              <button
-                onClick={() => setShowLogoutModal(true)} // *** CHANGED
-                className="action-btn secondary"
-              >
-                <FiLogOut /> Log out
-              </button>
-            </div>
-          </div>
-
-          {/* Main Content */}
-          <div className="profile-main-content">
-            {error && (
-              <p className="modal-error" style={{ marginBottom: '20px' }}>
-                <FiAlertTriangle /> {error}
-              </p>
-            )}
-
-            <div className="info-section">
-              <h4>Account Details</h4>
-              <div className="details-grid">
-                <InfoDetail Icon={FiPhone} label="Phone Number" value={user.phoneNum} />
-                <InfoDetail Icon={FiAward} label="Grade" value={user.grade} />
-                <InfoDetail Icon={FiHash} label="Age" value={user.age} />
-                <InfoDetail
-                  Icon={FiCalendar}
-                  label="Days Absent"
-                  value={user.daysAbsent || 0}
-                />
-              </div>
-            </div>
-
-            <div className="info-section">
-              <h4>Location Information</h4>
-              <div className="details-grid">
-                <InfoDetail
-                  Icon={FiMapPin}
-                  label="Location / City"
-                  value={user.location}
-                />
-                <InfoDetail Icon={FiGlobe} label="Country" value={user.country} />
-              </div>
-            </div>
-
-            {/* NEW: Notes Section  // *** ADDED */}
-            <div className="notes-section">
-              <NoteCard variant="good" title="Good Notes" notes={goodNotes} />
-              <NoteCard variant="bad" title="Bad Notes" notes={badNotes} />
-            </div>
-
-            <div className="privacy-notice">
-              <p>This information is private and will not be shared.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {isModalOpen && (
-        <EditModal
-          key={user.id}
-          user={user}
-          onClose={() => setIsModalOpen(false)}
-          onSave={handleSaveFromModal}
-          onDelete={handleDeleteFromModal}
-        />
-      )}
-
-      {/* Logout Confirmation Modal  // *** ADDED */}
-      {showLogoutModal && (
-        <LogoutConfirmModal
-          name={user.name}
-          onCancel={() => setShowLogoutModal(false)}
-          onConfirm={() => {
-            setShowLogoutModal(false);
-            handleLogout();
-          }}
-        />
-      )}
-    </div>
-  );
-};
 
 export default ProfilePage;
