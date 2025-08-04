@@ -85,7 +85,8 @@ namespace RegisterAPII.Repos
         public async Task<string> LoginAsync(LoginDto dto)
         {
             var user = await _context.Accounts
-                .FirstOrDefaultAsync(u => u.Email.ToLower() == dto.Email.ToLower());
+                .Include(a => a.Role) // This tells EF Core to join the Roles table
+                .FirstOrDefaultAsync(u => u.Email == dto.Email);
 
             if (user == null)
                 return "Email not registered.";

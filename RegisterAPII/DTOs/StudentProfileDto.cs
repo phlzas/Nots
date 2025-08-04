@@ -4,6 +4,8 @@ namespace RegisterAPII.DTOs
 {
     public class StudentProfileDto
     {
+        [Required]
+        public int Id { get; set; }
         public string Name { get; set; }
         [EmailAddress]
         public string? Email { get; set; }

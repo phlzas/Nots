@@ -1,4 +1,4 @@
-﻿namespace RegisterAPII.DTOs
+namespace RegisterAPII.DTOs
 {
     public class NoteInputModel
     {
@@ -8,6 +8,8 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public string NoteType { get; set; }
-        public string ImageUrl { get; set; }
+        public IFormFile ImageUrl { get; set; }
+        public string gen { get; set; }
+        
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegisterAPII.DATA;
 
@@ -11,9 +12,11 @@ using RegisterAPII.DATA;
 namespace RegisterAPII.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250803112027_zzzzzzzzzz")]
+    partial class zzzzzzzzzz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -583,10 +586,6 @@ namespace RegisterAPII.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("gen")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -1343,7 +1342,7 @@ namespace RegisterAPII.Migrations
                             Id = 1,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(3),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6484),
                             DaysAbsent = 0,
                             Name = "Student 1 in Junior 1"
                         },
@@ -1352,7 +1351,7 @@ namespace RegisterAPII.Migrations
                             Id = 2,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(7),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6487),
                             DaysAbsent = 0,
                             Name = "Student 2 in Junior 1"
                         },
@@ -1361,7 +1360,7 @@ namespace RegisterAPII.Migrations
                             Id = 3,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(8),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6488),
                             DaysAbsent = 0,
                             Name = "Student 3 in Junior 1"
                         },
@@ -1370,7 +1369,7 @@ namespace RegisterAPII.Migrations
                             Id = 4,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(9),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6489),
                             DaysAbsent = 0,
                             Name = "Student 4 in Junior 1"
                         },
@@ -1379,7 +1378,7 @@ namespace RegisterAPII.Migrations
                             Id = 5,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(10),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6490),
                             DaysAbsent = 0,
                             Name = "Student 5 in Junior 1"
                         },
@@ -1388,7 +1387,7 @@ namespace RegisterAPII.Migrations
                             Id = 6,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(10),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6491),
                             DaysAbsent = 0,
                             Name = "Student 6 in Junior 1"
                         },
@@ -1397,7 +1396,7 @@ namespace RegisterAPII.Migrations
                             Id = 7,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(11),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6492),
                             DaysAbsent = 0,
                             Name = "Student 7 in Junior 1"
                         },
@@ -1406,7 +1405,7 @@ namespace RegisterAPII.Migrations
                             Id = 8,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(12),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6493),
                             DaysAbsent = 0,
                             Name = "Student 8 in Junior 1"
                         },
@@ -1415,7 +1414,7 @@ namespace RegisterAPII.Migrations
                             Id = 9,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(12),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6494),
                             DaysAbsent = 0,
                             Name = "Student 9 in Junior 1"
                         },
@@ -1424,7 +1423,7 @@ namespace RegisterAPII.Migrations
                             Id = 10,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(13),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6494),
                             DaysAbsent = 0,
                             Name = "Student 10 in Junior 1"
                         },
@@ -1433,7 +1432,7 @@ namespace RegisterAPII.Migrations
                             Id = 11,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(14),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6495),
                             DaysAbsent = 0,
                             Name = "Student 11 in Junior 1"
                         },
@@ -1442,7 +1441,7 @@ namespace RegisterAPII.Migrations
                             Id = 12,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(14),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6497),
                             DaysAbsent = 0,
                             Name = "Student 12 in Junior 1"
                         },
@@ -1451,7 +1450,7 @@ namespace RegisterAPII.Migrations
                             Id = 13,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(15),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6498),
                             DaysAbsent = 0,
                             Name = "Student 13 in Junior 1"
                         },
@@ -1460,7 +1459,7 @@ namespace RegisterAPII.Migrations
                             Id = 14,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(16),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6499),
                             DaysAbsent = 0,
                             Name = "Student 14 in Junior 1"
                         },
@@ -1469,7 +1468,7 @@ namespace RegisterAPII.Migrations
                             Id = 15,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(16),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6500),
                             DaysAbsent = 0,
                             Name = "Student 15 in Junior 1"
                         },
@@ -1478,7 +1477,7 @@ namespace RegisterAPII.Migrations
                             Id = 16,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(17),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6500),
                             DaysAbsent = 0,
                             Name = "Student 16 in Junior 1"
                         },
@@ -1487,7 +1486,7 @@ namespace RegisterAPII.Migrations
                             Id = 17,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(18),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6501),
                             DaysAbsent = 0,
                             Name = "Student 17 in Junior 1"
                         },
@@ -1496,7 +1495,7 @@ namespace RegisterAPII.Migrations
                             Id = 18,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(18),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6502),
                             DaysAbsent = 0,
                             Name = "Student 18 in Junior 1"
                         },
@@ -1505,7 +1504,7 @@ namespace RegisterAPII.Migrations
                             Id = 19,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(19),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6503),
                             DaysAbsent = 0,
                             Name = "Student 19 in Junior 1"
                         },
@@ -1514,7 +1513,7 @@ namespace RegisterAPII.Migrations
                             Id = 20,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(20),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6504),
                             DaysAbsent = 0,
                             Name = "Student 20 in Junior 1"
                         },
@@ -1523,7 +1522,7 @@ namespace RegisterAPII.Migrations
                             Id = 21,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(21),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6505),
                             DaysAbsent = 0,
                             Name = "Student 21 in Junior 1"
                         },
@@ -1532,7 +1531,7 @@ namespace RegisterAPII.Migrations
                             Id = 22,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(21),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6506),
                             DaysAbsent = 0,
                             Name = "Student 22 in Junior 1"
                         },
@@ -1541,7 +1540,7 @@ namespace RegisterAPII.Migrations
                             Id = 23,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(22),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6507),
                             DaysAbsent = 0,
                             Name = "Student 23 in Junior 1"
                         },
@@ -1550,7 +1549,7 @@ namespace RegisterAPII.Migrations
                             Id = 24,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(23),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6508),
                             DaysAbsent = 0,
                             Name = "Student 24 in Junior 1"
                         },
@@ -1559,7 +1558,7 @@ namespace RegisterAPII.Migrations
                             Id = 25,
                             Age = 0,
                             ClassId = 1,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(23),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6509),
                             DaysAbsent = 0,
                             Name = "Student 25 in Junior 1"
                         },
@@ -1568,7 +1567,7 @@ namespace RegisterAPII.Migrations
                             Id = 26,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(24),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6510),
                             DaysAbsent = 0,
                             Name = "Student 26 in Junior 2"
                         },
@@ -1577,7 +1576,7 @@ namespace RegisterAPII.Migrations
                             Id = 27,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(25),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6511),
                             DaysAbsent = 0,
                             Name = "Student 27 in Junior 2"
                         },
@@ -1586,7 +1585,7 @@ namespace RegisterAPII.Migrations
                             Id = 28,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(25),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6512),
                             DaysAbsent = 0,
                             Name = "Student 28 in Junior 2"
                         },
@@ -1595,7 +1594,7 @@ namespace RegisterAPII.Migrations
                             Id = 29,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(73),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6513),
                             DaysAbsent = 0,
                             Name = "Student 29 in Junior 2"
                         },
@@ -1604,7 +1603,7 @@ namespace RegisterAPII.Migrations
                             Id = 30,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(74),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6514),
                             DaysAbsent = 0,
                             Name = "Student 30 in Junior 2"
                         },
@@ -1613,7 +1612,7 @@ namespace RegisterAPII.Migrations
                             Id = 31,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(74),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6515),
                             DaysAbsent = 0,
                             Name = "Student 31 in Junior 2"
                         },
@@ -1622,7 +1621,7 @@ namespace RegisterAPII.Migrations
                             Id = 32,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(75),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6516),
                             DaysAbsent = 0,
                             Name = "Student 32 in Junior 2"
                         },
@@ -1631,7 +1630,7 @@ namespace RegisterAPII.Migrations
                             Id = 33,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(76),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6517),
                             DaysAbsent = 0,
                             Name = "Student 33 in Junior 2"
                         },
@@ -1640,7 +1639,7 @@ namespace RegisterAPII.Migrations
                             Id = 34,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(76),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6518),
                             DaysAbsent = 0,
                             Name = "Student 34 in Junior 2"
                         },
@@ -1649,7 +1648,7 @@ namespace RegisterAPII.Migrations
                             Id = 35,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(77),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6518),
                             DaysAbsent = 0,
                             Name = "Student 35 in Junior 2"
                         },
@@ -1658,7 +1657,7 @@ namespace RegisterAPII.Migrations
                             Id = 36,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(78),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6519),
                             DaysAbsent = 0,
                             Name = "Student 36 in Junior 2"
                         },
@@ -1667,7 +1666,7 @@ namespace RegisterAPII.Migrations
                             Id = 37,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(78),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6520),
                             DaysAbsent = 0,
                             Name = "Student 37 in Junior 2"
                         },
@@ -1676,7 +1675,7 @@ namespace RegisterAPII.Migrations
                             Id = 38,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(79),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6521),
                             DaysAbsent = 0,
                             Name = "Student 38 in Junior 2"
                         },
@@ -1685,7 +1684,7 @@ namespace RegisterAPII.Migrations
                             Id = 39,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(80),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6522),
                             DaysAbsent = 0,
                             Name = "Student 39 in Junior 2"
                         },
@@ -1694,7 +1693,7 @@ namespace RegisterAPII.Migrations
                             Id = 40,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(80),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6523),
                             DaysAbsent = 0,
                             Name = "Student 40 in Junior 2"
                         },
@@ -1703,7 +1702,7 @@ namespace RegisterAPII.Migrations
                             Id = 41,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(81),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6524),
                             DaysAbsent = 0,
                             Name = "Student 41 in Junior 2"
                         },
@@ -1712,7 +1711,7 @@ namespace RegisterAPII.Migrations
                             Id = 42,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(82),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6525),
                             DaysAbsent = 0,
                             Name = "Student 42 in Junior 2"
                         },
@@ -1721,7 +1720,7 @@ namespace RegisterAPII.Migrations
                             Id = 43,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(82),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6526),
                             DaysAbsent = 0,
                             Name = "Student 43 in Junior 2"
                         },
@@ -1730,7 +1729,7 @@ namespace RegisterAPII.Migrations
                             Id = 44,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(83),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6527),
                             DaysAbsent = 0,
                             Name = "Student 44 in Junior 2"
                         },
@@ -1739,7 +1738,7 @@ namespace RegisterAPII.Migrations
                             Id = 45,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(84),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6527),
                             DaysAbsent = 0,
                             Name = "Student 45 in Junior 2"
                         },
@@ -1748,7 +1747,7 @@ namespace RegisterAPII.Migrations
                             Id = 46,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(84),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6528),
                             DaysAbsent = 0,
                             Name = "Student 46 in Junior 2"
                         },
@@ -1757,7 +1756,7 @@ namespace RegisterAPII.Migrations
                             Id = 47,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(85),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6529),
                             DaysAbsent = 0,
                             Name = "Student 47 in Junior 2"
                         },
@@ -1766,7 +1765,7 @@ namespace RegisterAPII.Migrations
                             Id = 48,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(86),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6530),
                             DaysAbsent = 0,
                             Name = "Student 48 in Junior 2"
                         },
@@ -1775,7 +1774,7 @@ namespace RegisterAPII.Migrations
                             Id = 49,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(86),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6531),
                             DaysAbsent = 0,
                             Name = "Student 49 in Junior 2"
                         },
@@ -1784,7 +1783,7 @@ namespace RegisterAPII.Migrations
                             Id = 50,
                             Age = 0,
                             ClassId = 2,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(87),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6532),
                             DaysAbsent = 0,
                             Name = "Student 50 in Junior 2"
                         },
@@ -1793,7 +1792,7 @@ namespace RegisterAPII.Migrations
                             Id = 51,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(88),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6533),
                             DaysAbsent = 0,
                             Name = "Student 51 in Junior 3"
                         },
@@ -1802,7 +1801,7 @@ namespace RegisterAPII.Migrations
                             Id = 52,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(88),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6534),
                             DaysAbsent = 0,
                             Name = "Student 52 in Junior 3"
                         },
@@ -1811,7 +1810,7 @@ namespace RegisterAPII.Migrations
                             Id = 53,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(89),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6535),
                             DaysAbsent = 0,
                             Name = "Student 53 in Junior 3"
                         },
@@ -1820,7 +1819,7 @@ namespace RegisterAPII.Migrations
                             Id = 54,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(90),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6536),
                             DaysAbsent = 0,
                             Name = "Student 54 in Junior 3"
                         },
@@ -1829,7 +1828,7 @@ namespace RegisterAPII.Migrations
                             Id = 55,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(90),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6537),
                             DaysAbsent = 0,
                             Name = "Student 55 in Junior 3"
                         },
@@ -1838,7 +1837,7 @@ namespace RegisterAPII.Migrations
                             Id = 56,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(91),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6537),
                             DaysAbsent = 0,
                             Name = "Student 56 in Junior 3"
                         },
@@ -1847,7 +1846,7 @@ namespace RegisterAPII.Migrations
                             Id = 57,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(92),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6538),
                             DaysAbsent = 0,
                             Name = "Student 57 in Junior 3"
                         },
@@ -1856,7 +1855,7 @@ namespace RegisterAPII.Migrations
                             Id = 58,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(92),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6539),
                             DaysAbsent = 0,
                             Name = "Student 58 in Junior 3"
                         },
@@ -1865,7 +1864,7 @@ namespace RegisterAPII.Migrations
                             Id = 59,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(93),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6540),
                             DaysAbsent = 0,
                             Name = "Student 59 in Junior 3"
                         },
@@ -1874,7 +1873,7 @@ namespace RegisterAPII.Migrations
                             Id = 60,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(94),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6541),
                             DaysAbsent = 0,
                             Name = "Student 60 in Junior 3"
                         },
@@ -1883,7 +1882,7 @@ namespace RegisterAPII.Migrations
                             Id = 61,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(94),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6542),
                             DaysAbsent = 0,
                             Name = "Student 61 in Junior 3"
                         },
@@ -1892,7 +1891,7 @@ namespace RegisterAPII.Migrations
                             Id = 62,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(95),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6543),
                             DaysAbsent = 0,
                             Name = "Student 62 in Junior 3"
                         },
@@ -1901,7 +1900,7 @@ namespace RegisterAPII.Migrations
                             Id = 63,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(96),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6544),
                             DaysAbsent = 0,
                             Name = "Student 63 in Junior 3"
                         },
@@ -1910,7 +1909,7 @@ namespace RegisterAPII.Migrations
                             Id = 64,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(96),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6546),
                             DaysAbsent = 0,
                             Name = "Student 64 in Junior 3"
                         },
@@ -1919,7 +1918,7 @@ namespace RegisterAPII.Migrations
                             Id = 65,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(97),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6547),
                             DaysAbsent = 0,
                             Name = "Student 65 in Junior 3"
                         },
@@ -1928,7 +1927,7 @@ namespace RegisterAPII.Migrations
                             Id = 66,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(98),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6548),
                             DaysAbsent = 0,
                             Name = "Student 66 in Junior 3"
                         },
@@ -1937,7 +1936,7 @@ namespace RegisterAPII.Migrations
                             Id = 67,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(98),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6549),
                             DaysAbsent = 0,
                             Name = "Student 67 in Junior 3"
                         },
@@ -1946,7 +1945,7 @@ namespace RegisterAPII.Migrations
                             Id = 68,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(99),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6549),
                             DaysAbsent = 0,
                             Name = "Student 68 in Junior 3"
                         },
@@ -1955,7 +1954,7 @@ namespace RegisterAPII.Migrations
                             Id = 69,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(100),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6550),
                             DaysAbsent = 0,
                             Name = "Student 69 in Junior 3"
                         },
@@ -1964,7 +1963,7 @@ namespace RegisterAPII.Migrations
                             Id = 70,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(100),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6552),
                             DaysAbsent = 0,
                             Name = "Student 70 in Junior 3"
                         },
@@ -1973,7 +1972,7 @@ namespace RegisterAPII.Migrations
                             Id = 71,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(101),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6582),
                             DaysAbsent = 0,
                             Name = "Student 71 in Junior 3"
                         },
@@ -1982,7 +1981,7 @@ namespace RegisterAPII.Migrations
                             Id = 72,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(101),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6583),
                             DaysAbsent = 0,
                             Name = "Student 72 in Junior 3"
                         },
@@ -1991,7 +1990,7 @@ namespace RegisterAPII.Migrations
                             Id = 73,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(102),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6584),
                             DaysAbsent = 0,
                             Name = "Student 73 in Junior 3"
                         },
@@ -2000,7 +1999,7 @@ namespace RegisterAPII.Migrations
                             Id = 74,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(103),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6585),
                             DaysAbsent = 0,
                             Name = "Student 74 in Junior 3"
                         },
@@ -2009,7 +2008,7 @@ namespace RegisterAPII.Migrations
                             Id = 75,
                             Age = 0,
                             ClassId = 3,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(103),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6586),
                             DaysAbsent = 0,
                             Name = "Student 75 in Junior 3"
                         },
@@ -2018,7 +2017,7 @@ namespace RegisterAPII.Migrations
                             Id = 76,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(104),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6587),
                             DaysAbsent = 0,
                             Name = "Student 76 in Junior 4"
                         },
@@ -2027,7 +2026,7 @@ namespace RegisterAPII.Migrations
                             Id = 77,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(105),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6588),
                             DaysAbsent = 0,
                             Name = "Student 77 in Junior 4"
                         },
@@ -2036,7 +2035,7 @@ namespace RegisterAPII.Migrations
                             Id = 78,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(105),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6589),
                             DaysAbsent = 0,
                             Name = "Student 78 in Junior 4"
                         },
@@ -2045,7 +2044,7 @@ namespace RegisterAPII.Migrations
                             Id = 79,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(106),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6590),
                             DaysAbsent = 0,
                             Name = "Student 79 in Junior 4"
                         },
@@ -2054,7 +2053,7 @@ namespace RegisterAPII.Migrations
                             Id = 80,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(107),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6590),
                             DaysAbsent = 0,
                             Name = "Student 80 in Junior 4"
                         },
@@ -2063,7 +2062,7 @@ namespace RegisterAPII.Migrations
                             Id = 81,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(107),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6591),
                             DaysAbsent = 0,
                             Name = "Student 81 in Junior 4"
                         },
@@ -2072,7 +2071,7 @@ namespace RegisterAPII.Migrations
                             Id = 82,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(108),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6592),
                             DaysAbsent = 0,
                             Name = "Student 82 in Junior 4"
                         },
@@ -2081,7 +2080,7 @@ namespace RegisterAPII.Migrations
                             Id = 83,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(109),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6593),
                             DaysAbsent = 0,
                             Name = "Student 83 in Junior 4"
                         },
@@ -2090,7 +2089,7 @@ namespace RegisterAPII.Migrations
                             Id = 84,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(110),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6594),
                             DaysAbsent = 0,
                             Name = "Student 84 in Junior 4"
                         },
@@ -2099,7 +2098,7 @@ namespace RegisterAPII.Migrations
                             Id = 85,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(110),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6595),
                             DaysAbsent = 0,
                             Name = "Student 85 in Junior 4"
                         },
@@ -2108,7 +2107,7 @@ namespace RegisterAPII.Migrations
                             Id = 86,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(111),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6596),
                             DaysAbsent = 0,
                             Name = "Student 86 in Junior 4"
                         },
@@ -2117,7 +2116,7 @@ namespace RegisterAPII.Migrations
                             Id = 87,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(111),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6597),
                             DaysAbsent = 0,
                             Name = "Student 87 in Junior 4"
                         },
@@ -2126,7 +2125,7 @@ namespace RegisterAPII.Migrations
                             Id = 88,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(112),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6598),
                             DaysAbsent = 0,
                             Name = "Student 88 in Junior 4"
                         },
@@ -2135,7 +2134,7 @@ namespace RegisterAPII.Migrations
                             Id = 89,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(113),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6599),
                             DaysAbsent = 0,
                             Name = "Student 89 in Junior 4"
                         },
@@ -2144,7 +2143,7 @@ namespace RegisterAPII.Migrations
                             Id = 90,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(114),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6600),
                             DaysAbsent = 0,
                             Name = "Student 90 in Junior 4"
                         },
@@ -2153,7 +2152,7 @@ namespace RegisterAPII.Migrations
                             Id = 91,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(114),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6601),
                             DaysAbsent = 0,
                             Name = "Student 91 in Junior 4"
                         },
@@ -2162,7 +2161,7 @@ namespace RegisterAPII.Migrations
                             Id = 92,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(115),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6602),
                             DaysAbsent = 0,
                             Name = "Student 92 in Junior 4"
                         },
@@ -2171,7 +2170,7 @@ namespace RegisterAPII.Migrations
                             Id = 93,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(116),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6602),
                             DaysAbsent = 0,
                             Name = "Student 93 in Junior 4"
                         },
@@ -2180,7 +2179,7 @@ namespace RegisterAPII.Migrations
                             Id = 94,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(116),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6603),
                             DaysAbsent = 0,
                             Name = "Student 94 in Junior 4"
                         },
@@ -2189,7 +2188,7 @@ namespace RegisterAPII.Migrations
                             Id = 95,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(117),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6604),
                             DaysAbsent = 0,
                             Name = "Student 95 in Junior 4"
                         },
@@ -2198,7 +2197,7 @@ namespace RegisterAPII.Migrations
                             Id = 96,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(118),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6605),
                             DaysAbsent = 0,
                             Name = "Student 96 in Junior 4"
                         },
@@ -2207,7 +2206,7 @@ namespace RegisterAPII.Migrations
                             Id = 97,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(118),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6606),
                             DaysAbsent = 0,
                             Name = "Student 97 in Junior 4"
                         },
@@ -2216,7 +2215,7 @@ namespace RegisterAPII.Migrations
                             Id = 98,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(119),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6607),
                             DaysAbsent = 0,
                             Name = "Student 98 in Junior 4"
                         },
@@ -2225,7 +2224,7 @@ namespace RegisterAPII.Migrations
                             Id = 99,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(120),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6609),
                             DaysAbsent = 0,
                             Name = "Student 99 in Junior 4"
                         },
@@ -2234,7 +2233,7 @@ namespace RegisterAPII.Migrations
                             Id = 100,
                             Age = 0,
                             ClassId = 4,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(120),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6610),
                             DaysAbsent = 0,
                             Name = "Student 100 in Junior 4"
                         },
@@ -2243,7 +2242,7 @@ namespace RegisterAPII.Migrations
                             Id = 101,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(121),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6610),
                             DaysAbsent = 0,
                             Name = "Student 101 in Wheeler 1"
                         },
@@ -2252,7 +2251,7 @@ namespace RegisterAPII.Migrations
                             Id = 102,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(122),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6611),
                             DaysAbsent = 0,
                             Name = "Student 102 in Wheeler 1"
                         },
@@ -2261,7 +2260,7 @@ namespace RegisterAPII.Migrations
                             Id = 103,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(122),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6612),
                             DaysAbsent = 0,
                             Name = "Student 103 in Wheeler 1"
                         },
@@ -2270,7 +2269,7 @@ namespace RegisterAPII.Migrations
                             Id = 104,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(123),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6613),
                             DaysAbsent = 0,
                             Name = "Student 104 in Wheeler 1"
                         },
@@ -2279,7 +2278,7 @@ namespace RegisterAPII.Migrations
                             Id = 105,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(124),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6614),
                             DaysAbsent = 0,
                             Name = "Student 105 in Wheeler 1"
                         },
@@ -2288,7 +2287,7 @@ namespace RegisterAPII.Migrations
                             Id = 106,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(124),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6615),
                             DaysAbsent = 0,
                             Name = "Student 106 in Wheeler 1"
                         },
@@ -2297,7 +2296,7 @@ namespace RegisterAPII.Migrations
                             Id = 107,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(125),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6616),
                             DaysAbsent = 0,
                             Name = "Student 107 in Wheeler 1"
                         },
@@ -2306,7 +2305,7 @@ namespace RegisterAPII.Migrations
                             Id = 108,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(168),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6617),
                             DaysAbsent = 0,
                             Name = "Student 108 in Wheeler 1"
                         },
@@ -2315,7 +2314,7 @@ namespace RegisterAPII.Migrations
                             Id = 109,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(169),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6618),
                             DaysAbsent = 0,
                             Name = "Student 109 in Wheeler 1"
                         },
@@ -2324,7 +2323,7 @@ namespace RegisterAPII.Migrations
                             Id = 110,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(170),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6619),
                             DaysAbsent = 0,
                             Name = "Student 110 in Wheeler 1"
                         },
@@ -2333,7 +2332,7 @@ namespace RegisterAPII.Migrations
                             Id = 111,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(170),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6619),
                             DaysAbsent = 0,
                             Name = "Student 111 in Wheeler 1"
                         },
@@ -2342,7 +2341,7 @@ namespace RegisterAPII.Migrations
                             Id = 112,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(171),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6620),
                             DaysAbsent = 0,
                             Name = "Student 112 in Wheeler 1"
                         },
@@ -2351,7 +2350,7 @@ namespace RegisterAPII.Migrations
                             Id = 113,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(172),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6621),
                             DaysAbsent = 0,
                             Name = "Student 113 in Wheeler 1"
                         },
@@ -2360,7 +2359,7 @@ namespace RegisterAPII.Migrations
                             Id = 114,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(172),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6622),
                             DaysAbsent = 0,
                             Name = "Student 114 in Wheeler 1"
                         },
@@ -2369,7 +2368,7 @@ namespace RegisterAPII.Migrations
                             Id = 115,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(173),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6623),
                             DaysAbsent = 0,
                             Name = "Student 115 in Wheeler 1"
                         },
@@ -2378,7 +2377,7 @@ namespace RegisterAPII.Migrations
                             Id = 116,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(174),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6624),
                             DaysAbsent = 0,
                             Name = "Student 116 in Wheeler 1"
                         },
@@ -2387,7 +2386,7 @@ namespace RegisterAPII.Migrations
                             Id = 117,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(174),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6625),
                             DaysAbsent = 0,
                             Name = "Student 117 in Wheeler 1"
                         },
@@ -2396,7 +2395,7 @@ namespace RegisterAPII.Migrations
                             Id = 118,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(175),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6626),
                             DaysAbsent = 0,
                             Name = "Student 118 in Wheeler 1"
                         },
@@ -2405,7 +2404,7 @@ namespace RegisterAPII.Migrations
                             Id = 119,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(176),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6627),
                             DaysAbsent = 0,
                             Name = "Student 119 in Wheeler 1"
                         },
@@ -2414,7 +2413,7 @@ namespace RegisterAPII.Migrations
                             Id = 120,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(177),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6628),
                             DaysAbsent = 0,
                             Name = "Student 120 in Wheeler 1"
                         },
@@ -2423,7 +2422,7 @@ namespace RegisterAPII.Migrations
                             Id = 121,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(177),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6629),
                             DaysAbsent = 0,
                             Name = "Student 121 in Wheeler 1"
                         },
@@ -2432,7 +2431,7 @@ namespace RegisterAPII.Migrations
                             Id = 122,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(178),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6629),
                             DaysAbsent = 0,
                             Name = "Student 122 in Wheeler 1"
                         },
@@ -2441,7 +2440,7 @@ namespace RegisterAPII.Migrations
                             Id = 123,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(179),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6630),
                             DaysAbsent = 0,
                             Name = "Student 123 in Wheeler 1"
                         },
@@ -2450,7 +2449,7 @@ namespace RegisterAPII.Migrations
                             Id = 124,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(179),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6631),
                             DaysAbsent = 0,
                             Name = "Student 124 in Wheeler 1"
                         },
@@ -2459,7 +2458,7 @@ namespace RegisterAPII.Migrations
                             Id = 125,
                             Age = 0,
                             ClassId = 5,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(180),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6632),
                             DaysAbsent = 0,
                             Name = "Student 125 in Wheeler 1"
                         },
@@ -2468,7 +2467,7 @@ namespace RegisterAPII.Migrations
                             Id = 126,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(181),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6633),
                             DaysAbsent = 0,
                             Name = "Student 126 in Wheeler 2"
                         },
@@ -2477,7 +2476,7 @@ namespace RegisterAPII.Migrations
                             Id = 127,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(181),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6634),
                             DaysAbsent = 0,
                             Name = "Student 127 in Wheeler 2"
                         },
@@ -2486,7 +2485,7 @@ namespace RegisterAPII.Migrations
                             Id = 128,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(182),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6635),
                             DaysAbsent = 0,
                             Name = "Student 128 in Wheeler 2"
                         },
@@ -2495,7 +2494,7 @@ namespace RegisterAPII.Migrations
                             Id = 129,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(183),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6636),
                             DaysAbsent = 0,
                             Name = "Student 129 in Wheeler 2"
                         },
@@ -2504,7 +2503,7 @@ namespace RegisterAPII.Migrations
                             Id = 130,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(183),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6637),
                             DaysAbsent = 0,
                             Name = "Student 130 in Wheeler 2"
                         },
@@ -2513,7 +2512,7 @@ namespace RegisterAPII.Migrations
                             Id = 131,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(184),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6638),
                             DaysAbsent = 0,
                             Name = "Student 131 in Wheeler 2"
                         },
@@ -2522,7 +2521,7 @@ namespace RegisterAPII.Migrations
                             Id = 132,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(185),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6639),
                             DaysAbsent = 0,
                             Name = "Student 132 in Wheeler 2"
                         },
@@ -2531,7 +2530,7 @@ namespace RegisterAPII.Migrations
                             Id = 133,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(185),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6640),
                             DaysAbsent = 0,
                             Name = "Student 133 in Wheeler 2"
                         },
@@ -2540,7 +2539,7 @@ namespace RegisterAPII.Migrations
                             Id = 134,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(186),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6640),
                             DaysAbsent = 0,
                             Name = "Student 134 in Wheeler 2"
                         },
@@ -2549,7 +2548,7 @@ namespace RegisterAPII.Migrations
                             Id = 135,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(187),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6641),
                             DaysAbsent = 0,
                             Name = "Student 135 in Wheeler 2"
                         },
@@ -2558,7 +2557,7 @@ namespace RegisterAPII.Migrations
                             Id = 136,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(187),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6642),
                             DaysAbsent = 0,
                             Name = "Student 136 in Wheeler 2"
                         },
@@ -2567,7 +2566,7 @@ namespace RegisterAPII.Migrations
                             Id = 137,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(188),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6643),
                             DaysAbsent = 0,
                             Name = "Student 137 in Wheeler 2"
                         },
@@ -2576,7 +2575,7 @@ namespace RegisterAPII.Migrations
                             Id = 138,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(189),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6644),
                             DaysAbsent = 0,
                             Name = "Student 138 in Wheeler 2"
                         },
@@ -2585,7 +2584,7 @@ namespace RegisterAPII.Migrations
                             Id = 139,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(189),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6645),
                             DaysAbsent = 0,
                             Name = "Student 139 in Wheeler 2"
                         },
@@ -2594,7 +2593,7 @@ namespace RegisterAPII.Migrations
                             Id = 140,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(190),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6646),
                             DaysAbsent = 0,
                             Name = "Student 140 in Wheeler 2"
                         },
@@ -2603,7 +2602,7 @@ namespace RegisterAPII.Migrations
                             Id = 141,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(191),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6647),
                             DaysAbsent = 0,
                             Name = "Student 141 in Wheeler 2"
                         },
@@ -2612,7 +2611,7 @@ namespace RegisterAPII.Migrations
                             Id = 142,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(191),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6647),
                             DaysAbsent = 0,
                             Name = "Student 142 in Wheeler 2"
                         },
@@ -2621,7 +2620,7 @@ namespace RegisterAPII.Migrations
                             Id = 143,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(192),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6648),
                             DaysAbsent = 0,
                             Name = "Student 143 in Wheeler 2"
                         },
@@ -2630,7 +2629,7 @@ namespace RegisterAPII.Migrations
                             Id = 144,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(193),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6649),
                             DaysAbsent = 0,
                             Name = "Student 144 in Wheeler 2"
                         },
@@ -2639,7 +2638,7 @@ namespace RegisterAPII.Migrations
                             Id = 145,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(193),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6650),
                             DaysAbsent = 0,
                             Name = "Student 145 in Wheeler 2"
                         },
@@ -2648,7 +2647,7 @@ namespace RegisterAPII.Migrations
                             Id = 146,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(194),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6651),
                             DaysAbsent = 0,
                             Name = "Student 146 in Wheeler 2"
                         },
@@ -2657,7 +2656,7 @@ namespace RegisterAPII.Migrations
                             Id = 147,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(195),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6652),
                             DaysAbsent = 0,
                             Name = "Student 147 in Wheeler 2"
                         },
@@ -2666,7 +2665,7 @@ namespace RegisterAPII.Migrations
                             Id = 148,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(195),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6730),
                             DaysAbsent = 0,
                             Name = "Student 148 in Wheeler 2"
                         },
@@ -2675,7 +2674,7 @@ namespace RegisterAPII.Migrations
                             Id = 149,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(196),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6731),
                             DaysAbsent = 0,
                             Name = "Student 149 in Wheeler 2"
                         },
@@ -2684,7 +2683,7 @@ namespace RegisterAPII.Migrations
                             Id = 150,
                             Age = 0,
                             ClassId = 6,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(197),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6732),
                             DaysAbsent = 0,
                             Name = "Student 150 in Wheeler 2"
                         },
@@ -2693,7 +2692,7 @@ namespace RegisterAPII.Migrations
                             Id = 151,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(197),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6733),
                             DaysAbsent = 0,
                             Name = "Student 151 in Wheeler 3"
                         },
@@ -2702,7 +2701,7 @@ namespace RegisterAPII.Migrations
                             Id = 152,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(198),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6734),
                             DaysAbsent = 0,
                             Name = "Student 152 in Wheeler 3"
                         },
@@ -2711,7 +2710,7 @@ namespace RegisterAPII.Migrations
                             Id = 153,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(199),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6735),
                             DaysAbsent = 0,
                             Name = "Student 153 in Wheeler 3"
                         },
@@ -2720,7 +2719,7 @@ namespace RegisterAPII.Migrations
                             Id = 154,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(199),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6735),
                             DaysAbsent = 0,
                             Name = "Student 154 in Wheeler 3"
                         },
@@ -2729,7 +2728,7 @@ namespace RegisterAPII.Migrations
                             Id = 155,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(200),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6737),
                             DaysAbsent = 0,
                             Name = "Student 155 in Wheeler 3"
                         },
@@ -2738,7 +2737,7 @@ namespace RegisterAPII.Migrations
                             Id = 156,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(201),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6738),
                             DaysAbsent = 0,
                             Name = "Student 156 in Wheeler 3"
                         },
@@ -2747,7 +2746,7 @@ namespace RegisterAPII.Migrations
                             Id = 157,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(201),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6739),
                             DaysAbsent = 0,
                             Name = "Student 157 in Wheeler 3"
                         },
@@ -2756,7 +2755,7 @@ namespace RegisterAPII.Migrations
                             Id = 158,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(202),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6740),
                             DaysAbsent = 0,
                             Name = "Student 158 in Wheeler 3"
                         },
@@ -2765,7 +2764,7 @@ namespace RegisterAPII.Migrations
                             Id = 159,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(203),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6742),
                             DaysAbsent = 0,
                             Name = "Student 159 in Wheeler 3"
                         },
@@ -2774,7 +2773,7 @@ namespace RegisterAPII.Migrations
                             Id = 160,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(203),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6743),
                             DaysAbsent = 0,
                             Name = "Student 160 in Wheeler 3"
                         },
@@ -2783,7 +2782,7 @@ namespace RegisterAPII.Migrations
                             Id = 161,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(204),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6744),
                             DaysAbsent = 0,
                             Name = "Student 161 in Wheeler 3"
                         },
@@ -2792,7 +2791,7 @@ namespace RegisterAPII.Migrations
                             Id = 162,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(205),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6745),
                             DaysAbsent = 0,
                             Name = "Student 162 in Wheeler 3"
                         },
@@ -2801,7 +2800,7 @@ namespace RegisterAPII.Migrations
                             Id = 163,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(205),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6746),
                             DaysAbsent = 0,
                             Name = "Student 163 in Wheeler 3"
                         },
@@ -2810,7 +2809,7 @@ namespace RegisterAPII.Migrations
                             Id = 164,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(206),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6747),
                             DaysAbsent = 0,
                             Name = "Student 164 in Wheeler 3"
                         },
@@ -2819,7 +2818,7 @@ namespace RegisterAPII.Migrations
                             Id = 165,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(207),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6747),
                             DaysAbsent = 0,
                             Name = "Student 165 in Wheeler 3"
                         },
@@ -2828,7 +2827,7 @@ namespace RegisterAPII.Migrations
                             Id = 166,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(207),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6748),
                             DaysAbsent = 0,
                             Name = "Student 166 in Wheeler 3"
                         },
@@ -2837,7 +2836,7 @@ namespace RegisterAPII.Migrations
                             Id = 167,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(208),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6749),
                             DaysAbsent = 0,
                             Name = "Student 167 in Wheeler 3"
                         },
@@ -2846,7 +2845,7 @@ namespace RegisterAPII.Migrations
                             Id = 168,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(209),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6750),
                             DaysAbsent = 0,
                             Name = "Student 168 in Wheeler 3"
                         },
@@ -2855,7 +2854,7 @@ namespace RegisterAPII.Migrations
                             Id = 169,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(209),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6751),
                             DaysAbsent = 0,
                             Name = "Student 169 in Wheeler 3"
                         },
@@ -2864,7 +2863,7 @@ namespace RegisterAPII.Migrations
                             Id = 170,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(210),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6752),
                             DaysAbsent = 0,
                             Name = "Student 170 in Wheeler 3"
                         },
@@ -2873,7 +2872,7 @@ namespace RegisterAPII.Migrations
                             Id = 171,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(211),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6753),
                             DaysAbsent = 0,
                             Name = "Student 171 in Wheeler 3"
                         },
@@ -2882,7 +2881,7 @@ namespace RegisterAPII.Migrations
                             Id = 172,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(211),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6754),
                             DaysAbsent = 0,
                             Name = "Student 172 in Wheeler 3"
                         },
@@ -2891,7 +2890,7 @@ namespace RegisterAPII.Migrations
                             Id = 173,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(212),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6755),
                             DaysAbsent = 0,
                             Name = "Student 173 in Wheeler 3"
                         },
@@ -2900,7 +2899,7 @@ namespace RegisterAPII.Migrations
                             Id = 174,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(213),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6756),
                             DaysAbsent = 0,
                             Name = "Student 174 in Wheeler 3"
                         },
@@ -2909,7 +2908,7 @@ namespace RegisterAPII.Migrations
                             Id = 175,
                             Age = 0,
                             ClassId = 7,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(213),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6757),
                             DaysAbsent = 0,
                             Name = "Student 175 in Wheeler 3"
                         },
@@ -2918,7 +2917,7 @@ namespace RegisterAPII.Migrations
                             Id = 176,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(214),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6758),
                             DaysAbsent = 0,
                             Name = "Student 176 in Wheeler 4"
                         },
@@ -2927,7 +2926,7 @@ namespace RegisterAPII.Migrations
                             Id = 177,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(215),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6759),
                             DaysAbsent = 0,
                             Name = "Student 177 in Wheeler 4"
                         },
@@ -2936,7 +2935,7 @@ namespace RegisterAPII.Migrations
                             Id = 178,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(215),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6760),
                             DaysAbsent = 0,
                             Name = "Student 178 in Wheeler 4"
                         },
@@ -2945,7 +2944,7 @@ namespace RegisterAPII.Migrations
                             Id = 179,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(216),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6761),
                             DaysAbsent = 0,
                             Name = "Student 179 in Wheeler 4"
                         },
@@ -2954,7 +2953,7 @@ namespace RegisterAPII.Migrations
                             Id = 180,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(217),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6762),
                             DaysAbsent = 0,
                             Name = "Student 180 in Wheeler 4"
                         },
@@ -2963,7 +2962,7 @@ namespace RegisterAPII.Migrations
                             Id = 181,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(217),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6763),
                             DaysAbsent = 0,
                             Name = "Student 181 in Wheeler 4"
                         },
@@ -2972,7 +2971,7 @@ namespace RegisterAPII.Migrations
                             Id = 182,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(218),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6764),
                             DaysAbsent = 0,
                             Name = "Student 182 in Wheeler 4"
                         },
@@ -2981,7 +2980,7 @@ namespace RegisterAPII.Migrations
                             Id = 183,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(219),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6765),
                             DaysAbsent = 0,
                             Name = "Student 183 in Wheeler 4"
                         },
@@ -2990,7 +2989,7 @@ namespace RegisterAPII.Migrations
                             Id = 184,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(219),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6766),
                             DaysAbsent = 0,
                             Name = "Student 184 in Wheeler 4"
                         },
@@ -2999,7 +2998,7 @@ namespace RegisterAPII.Migrations
                             Id = 185,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(220),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6766),
                             DaysAbsent = 0,
                             Name = "Student 185 in Wheeler 4"
                         },
@@ -3008,7 +3007,7 @@ namespace RegisterAPII.Migrations
                             Id = 186,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(221),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6768),
                             DaysAbsent = 0,
                             Name = "Student 186 in Wheeler 4"
                         },
@@ -3017,7 +3016,7 @@ namespace RegisterAPII.Migrations
                             Id = 187,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(254),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6768),
                             DaysAbsent = 0,
                             Name = "Student 187 in Wheeler 4"
                         },
@@ -3026,7 +3025,7 @@ namespace RegisterAPII.Migrations
                             Id = 188,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(255),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6769),
                             DaysAbsent = 0,
                             Name = "Student 188 in Wheeler 4"
                         },
@@ -3035,7 +3034,7 @@ namespace RegisterAPII.Migrations
                             Id = 189,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(255),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6770),
                             DaysAbsent = 0,
                             Name = "Student 189 in Wheeler 4"
                         },
@@ -3044,7 +3043,7 @@ namespace RegisterAPII.Migrations
                             Id = 190,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(256),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6771),
                             DaysAbsent = 0,
                             Name = "Student 190 in Wheeler 4"
                         },
@@ -3053,7 +3052,7 @@ namespace RegisterAPII.Migrations
                             Id = 191,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(257),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6772),
                             DaysAbsent = 0,
                             Name = "Student 191 in Wheeler 4"
                         },
@@ -3062,7 +3061,7 @@ namespace RegisterAPII.Migrations
                             Id = 192,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(258),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6773),
                             DaysAbsent = 0,
                             Name = "Student 192 in Wheeler 4"
                         },
@@ -3071,7 +3070,7 @@ namespace RegisterAPII.Migrations
                             Id = 193,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(258),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6774),
                             DaysAbsent = 0,
                             Name = "Student 193 in Wheeler 4"
                         },
@@ -3080,7 +3079,7 @@ namespace RegisterAPII.Migrations
                             Id = 194,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(259),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6774),
                             DaysAbsent = 0,
                             Name = "Student 194 in Wheeler 4"
                         },
@@ -3089,7 +3088,7 @@ namespace RegisterAPII.Migrations
                             Id = 195,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(260),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6775),
                             DaysAbsent = 0,
                             Name = "Student 195 in Wheeler 4"
                         },
@@ -3098,7 +3097,7 @@ namespace RegisterAPII.Migrations
                             Id = 196,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(260),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6776),
                             DaysAbsent = 0,
                             Name = "Student 196 in Wheeler 4"
                         },
@@ -3107,7 +3106,7 @@ namespace RegisterAPII.Migrations
                             Id = 197,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(261),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6777),
                             DaysAbsent = 0,
                             Name = "Student 197 in Wheeler 4"
                         },
@@ -3116,7 +3115,7 @@ namespace RegisterAPII.Migrations
                             Id = 198,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(262),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6778),
                             DaysAbsent = 0,
                             Name = "Student 198 in Wheeler 4"
                         },
@@ -3125,7 +3124,7 @@ namespace RegisterAPII.Migrations
                             Id = 199,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(262),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6779),
                             DaysAbsent = 0,
                             Name = "Student 199 in Wheeler 4"
                         },
@@ -3134,7 +3133,7 @@ namespace RegisterAPII.Migrations
                             Id = 200,
                             Age = 0,
                             ClassId = 8,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(263),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6780),
                             DaysAbsent = 0,
                             Name = "Student 200 in Wheeler 4"
                         },
@@ -3143,7 +3142,7 @@ namespace RegisterAPII.Migrations
                             Id = 201,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(264),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6781),
                             DaysAbsent = 0,
                             Name = "Student 201 in Senior 1"
                         },
@@ -3152,7 +3151,7 @@ namespace RegisterAPII.Migrations
                             Id = 202,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(264),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6782),
                             DaysAbsent = 0,
                             Name = "Student 202 in Senior 1"
                         },
@@ -3161,7 +3160,7 @@ namespace RegisterAPII.Migrations
                             Id = 203,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(265),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6783),
                             DaysAbsent = 0,
                             Name = "Student 203 in Senior 1"
                         },
@@ -3170,7 +3169,7 @@ namespace RegisterAPII.Migrations
                             Id = 204,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(266),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6785),
                             DaysAbsent = 0,
                             Name = "Student 204 in Senior 1"
                         },
@@ -3179,7 +3178,7 @@ namespace RegisterAPII.Migrations
                             Id = 205,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(266),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6786),
                             DaysAbsent = 0,
                             Name = "Student 205 in Senior 1"
                         },
@@ -3188,7 +3187,7 @@ namespace RegisterAPII.Migrations
                             Id = 206,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(267),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6787),
                             DaysAbsent = 0,
                             Name = "Student 206 in Senior 1"
                         },
@@ -3197,7 +3196,7 @@ namespace RegisterAPII.Migrations
                             Id = 207,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(268),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6788),
                             DaysAbsent = 0,
                             Name = "Student 207 in Senior 1"
                         },
@@ -3206,7 +3205,7 @@ namespace RegisterAPII.Migrations
                             Id = 208,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(268),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6789),
                             DaysAbsent = 0,
                             Name = "Student 208 in Senior 1"
                         },
@@ -3215,7 +3214,7 @@ namespace RegisterAPII.Migrations
                             Id = 209,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(269),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6790),
                             DaysAbsent = 0,
                             Name = "Student 209 in Senior 1"
                         },
@@ -3224,7 +3223,7 @@ namespace RegisterAPII.Migrations
                             Id = 210,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(270),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6791),
                             DaysAbsent = 0,
                             Name = "Student 210 in Senior 1"
                         },
@@ -3233,7 +3232,7 @@ namespace RegisterAPII.Migrations
                             Id = 211,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(270),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6792),
                             DaysAbsent = 0,
                             Name = "Student 211 in Senior 1"
                         },
@@ -3242,7 +3241,7 @@ namespace RegisterAPII.Migrations
                             Id = 212,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(271),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6792),
                             DaysAbsent = 0,
                             Name = "Student 212 in Senior 1"
                         },
@@ -3251,7 +3250,7 @@ namespace RegisterAPII.Migrations
                             Id = 213,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(272),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6793),
                             DaysAbsent = 0,
                             Name = "Student 213 in Senior 1"
                         },
@@ -3260,7 +3259,7 @@ namespace RegisterAPII.Migrations
                             Id = 214,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(272),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6794),
                             DaysAbsent = 0,
                             Name = "Student 214 in Senior 1"
                         },
@@ -3269,7 +3268,7 @@ namespace RegisterAPII.Migrations
                             Id = 215,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(273),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6795),
                             DaysAbsent = 0,
                             Name = "Student 215 in Senior 1"
                         },
@@ -3278,7 +3277,7 @@ namespace RegisterAPII.Migrations
                             Id = 216,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(274),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6796),
                             DaysAbsent = 0,
                             Name = "Student 216 in Senior 1"
                         },
@@ -3287,7 +3286,7 @@ namespace RegisterAPII.Migrations
                             Id = 217,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(274),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6797),
                             DaysAbsent = 0,
                             Name = "Student 217 in Senior 1"
                         },
@@ -3296,7 +3295,7 @@ namespace RegisterAPII.Migrations
                             Id = 218,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(275),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6798),
                             DaysAbsent = 0,
                             Name = "Student 218 in Senior 1"
                         },
@@ -3305,7 +3304,7 @@ namespace RegisterAPII.Migrations
                             Id = 219,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(276),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6799),
                             DaysAbsent = 0,
                             Name = "Student 219 in Senior 1"
                         },
@@ -3314,7 +3313,7 @@ namespace RegisterAPII.Migrations
                             Id = 220,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(276),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6800),
                             DaysAbsent = 0,
                             Name = "Student 220 in Senior 1"
                         },
@@ -3323,7 +3322,7 @@ namespace RegisterAPII.Migrations
                             Id = 221,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(277),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6801),
                             DaysAbsent = 0,
                             Name = "Student 221 in Senior 1"
                         },
@@ -3332,7 +3331,7 @@ namespace RegisterAPII.Migrations
                             Id = 222,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(278),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6802),
                             DaysAbsent = 0,
                             Name = "Student 222 in Senior 1"
                         },
@@ -3341,7 +3340,7 @@ namespace RegisterAPII.Migrations
                             Id = 223,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(278),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6803),
                             DaysAbsent = 0,
                             Name = "Student 223 in Senior 1"
                         },
@@ -3350,7 +3349,7 @@ namespace RegisterAPII.Migrations
                             Id = 224,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(279),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6804),
                             DaysAbsent = 0,
                             Name = "Student 224 in Senior 1"
                         },
@@ -3359,7 +3358,7 @@ namespace RegisterAPII.Migrations
                             Id = 225,
                             Age = 0,
                             ClassId = 9,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(280),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6805),
                             DaysAbsent = 0,
                             Name = "Student 225 in Senior 1"
                         },
@@ -3368,7 +3367,7 @@ namespace RegisterAPII.Migrations
                             Id = 226,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(280),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6805),
                             DaysAbsent = 0,
                             Name = "Student 226 in Senior 2"
                         },
@@ -3377,7 +3376,7 @@ namespace RegisterAPII.Migrations
                             Id = 227,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(281),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6880),
                             DaysAbsent = 0,
                             Name = "Student 227 in Senior 2"
                         },
@@ -3386,7 +3385,7 @@ namespace RegisterAPII.Migrations
                             Id = 228,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(281),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6881),
                             DaysAbsent = 0,
                             Name = "Student 228 in Senior 2"
                         },
@@ -3395,7 +3394,7 @@ namespace RegisterAPII.Migrations
                             Id = 229,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(282),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6882),
                             DaysAbsent = 0,
                             Name = "Student 229 in Senior 2"
                         },
@@ -3404,7 +3403,7 @@ namespace RegisterAPII.Migrations
                             Id = 230,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(283),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6883),
                             DaysAbsent = 0,
                             Name = "Student 230 in Senior 2"
                         },
@@ -3413,7 +3412,7 @@ namespace RegisterAPII.Migrations
                             Id = 231,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(284),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6884),
                             DaysAbsent = 0,
                             Name = "Student 231 in Senior 2"
                         },
@@ -3422,7 +3421,7 @@ namespace RegisterAPII.Migrations
                             Id = 232,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(284),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6885),
                             DaysAbsent = 0,
                             Name = "Student 232 in Senior 2"
                         },
@@ -3431,7 +3430,7 @@ namespace RegisterAPII.Migrations
                             Id = 233,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(285),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6886),
                             DaysAbsent = 0,
                             Name = "Student 233 in Senior 2"
                         },
@@ -3440,7 +3439,7 @@ namespace RegisterAPII.Migrations
                             Id = 234,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(285),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6887),
                             DaysAbsent = 0,
                             Name = "Student 234 in Senior 2"
                         },
@@ -3449,7 +3448,7 @@ namespace RegisterAPII.Migrations
                             Id = 235,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(286),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6887),
                             DaysAbsent = 0,
                             Name = "Student 235 in Senior 2"
                         },
@@ -3458,7 +3457,7 @@ namespace RegisterAPII.Migrations
                             Id = 236,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(287),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6888),
                             DaysAbsent = 0,
                             Name = "Student 236 in Senior 2"
                         },
@@ -3467,7 +3466,7 @@ namespace RegisterAPII.Migrations
                             Id = 237,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(288),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6889),
                             DaysAbsent = 0,
                             Name = "Student 237 in Senior 2"
                         },
@@ -3476,7 +3475,7 @@ namespace RegisterAPII.Migrations
                             Id = 238,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(288),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6890),
                             DaysAbsent = 0,
                             Name = "Student 238 in Senior 2"
                         },
@@ -3485,7 +3484,7 @@ namespace RegisterAPII.Migrations
                             Id = 239,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(289),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6891),
                             DaysAbsent = 0,
                             Name = "Student 239 in Senior 2"
                         },
@@ -3494,7 +3493,7 @@ namespace RegisterAPII.Migrations
                             Id = 240,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(290),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6892),
                             DaysAbsent = 0,
                             Name = "Student 240 in Senior 2"
                         },
@@ -3503,7 +3502,7 @@ namespace RegisterAPII.Migrations
                             Id = 241,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(290),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6893),
                             DaysAbsent = 0,
                             Name = "Student 241 in Senior 2"
                         },
@@ -3512,7 +3511,7 @@ namespace RegisterAPII.Migrations
                             Id = 242,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(291),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6893),
                             DaysAbsent = 0,
                             Name = "Student 242 in Senior 2"
                         },
@@ -3521,7 +3520,7 @@ namespace RegisterAPII.Migrations
                             Id = 243,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(292),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6894),
                             DaysAbsent = 0,
                             Name = "Student 243 in Senior 2"
                         },
@@ -3530,7 +3529,7 @@ namespace RegisterAPII.Migrations
                             Id = 244,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(292),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6895),
                             DaysAbsent = 0,
                             Name = "Student 244 in Senior 2"
                         },
@@ -3539,7 +3538,7 @@ namespace RegisterAPII.Migrations
                             Id = 245,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(293),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6896),
                             DaysAbsent = 0,
                             Name = "Student 245 in Senior 2"
                         },
@@ -3548,7 +3547,7 @@ namespace RegisterAPII.Migrations
                             Id = 246,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(294),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6897),
                             DaysAbsent = 0,
                             Name = "Student 246 in Senior 2"
                         },
@@ -3557,7 +3556,7 @@ namespace RegisterAPII.Migrations
                             Id = 247,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(294),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6898),
                             DaysAbsent = 0,
                             Name = "Student 247 in Senior 2"
                         },
@@ -3566,7 +3565,7 @@ namespace RegisterAPII.Migrations
                             Id = 248,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(295),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6899),
                             DaysAbsent = 0,
                             Name = "Student 248 in Senior 2"
                         },
@@ -3575,7 +3574,7 @@ namespace RegisterAPII.Migrations
                             Id = 249,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(296),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6900),
                             DaysAbsent = 0,
                             Name = "Student 249 in Senior 2"
                         },
@@ -3584,7 +3583,7 @@ namespace RegisterAPII.Migrations
                             Id = 250,
                             Age = 0,
                             ClassId = 10,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(296),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6901),
                             DaysAbsent = 0,
                             Name = "Student 250 in Senior 2"
                         },
@@ -3593,7 +3592,7 @@ namespace RegisterAPII.Migrations
                             Id = 251,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(297),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6902),
                             DaysAbsent = 0,
                             Name = "Student 251 in Senior 3"
                         },
@@ -3602,7 +3601,7 @@ namespace RegisterAPII.Migrations
                             Id = 252,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(298),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6902),
                             DaysAbsent = 0,
                             Name = "Student 252 in Senior 3"
                         },
@@ -3611,7 +3610,7 @@ namespace RegisterAPII.Migrations
                             Id = 253,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(298),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6903),
                             DaysAbsent = 0,
                             Name = "Student 253 in Senior 3"
                         },
@@ -3620,7 +3619,7 @@ namespace RegisterAPII.Migrations
                             Id = 254,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(299),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6904),
                             DaysAbsent = 0,
                             Name = "Student 254 in Senior 3"
                         },
@@ -3629,7 +3628,7 @@ namespace RegisterAPII.Migrations
                             Id = 255,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(300),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6905),
                             DaysAbsent = 0,
                             Name = "Student 255 in Senior 3"
                         },
@@ -3638,7 +3637,7 @@ namespace RegisterAPII.Migrations
                             Id = 256,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(300),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6906),
                             DaysAbsent = 0,
                             Name = "Student 256 in Senior 3"
                         },
@@ -3647,7 +3646,7 @@ namespace RegisterAPII.Migrations
                             Id = 257,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(301),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6907),
                             DaysAbsent = 0,
                             Name = "Student 257 in Senior 3"
                         },
@@ -3656,7 +3655,7 @@ namespace RegisterAPII.Migrations
                             Id = 258,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(302),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6908),
                             DaysAbsent = 0,
                             Name = "Student 258 in Senior 3"
                         },
@@ -3665,7 +3664,7 @@ namespace RegisterAPII.Migrations
                             Id = 259,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(302),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6909),
                             DaysAbsent = 0,
                             Name = "Student 259 in Senior 3"
                         },
@@ -3674,7 +3673,7 @@ namespace RegisterAPII.Migrations
                             Id = 260,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(303),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6909),
                             DaysAbsent = 0,
                             Name = "Student 260 in Senior 3"
                         },
@@ -3683,7 +3682,7 @@ namespace RegisterAPII.Migrations
                             Id = 261,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(304),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6910),
                             DaysAbsent = 0,
                             Name = "Student 261 in Senior 3"
                         },
@@ -3692,7 +3691,7 @@ namespace RegisterAPII.Migrations
                             Id = 262,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(304),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6911),
                             DaysAbsent = 0,
                             Name = "Student 262 in Senior 3"
                         },
@@ -3701,7 +3700,7 @@ namespace RegisterAPII.Migrations
                             Id = 263,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(305),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6912),
                             DaysAbsent = 0,
                             Name = "Student 263 in Senior 3"
                         },
@@ -3710,7 +3709,7 @@ namespace RegisterAPII.Migrations
                             Id = 264,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(306),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6913),
                             DaysAbsent = 0,
                             Name = "Student 264 in Senior 3"
                         },
@@ -3719,7 +3718,7 @@ namespace RegisterAPII.Migrations
                             Id = 265,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(306),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6914),
                             DaysAbsent = 0,
                             Name = "Student 265 in Senior 3"
                         },
@@ -3728,7 +3727,7 @@ namespace RegisterAPII.Migrations
                             Id = 266,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(339),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6915),
                             DaysAbsent = 0,
                             Name = "Student 266 in Senior 3"
                         },
@@ -3737,7 +3736,7 @@ namespace RegisterAPII.Migrations
                             Id = 267,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(340),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6916),
                             DaysAbsent = 0,
                             Name = "Student 267 in Senior 3"
                         },
@@ -3746,7 +3745,7 @@ namespace RegisterAPII.Migrations
                             Id = 268,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(341),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6917),
                             DaysAbsent = 0,
                             Name = "Student 268 in Senior 3"
                         },
@@ -3755,7 +3754,7 @@ namespace RegisterAPII.Migrations
                             Id = 269,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(342),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6917),
                             DaysAbsent = 0,
                             Name = "Student 269 in Senior 3"
                         },
@@ -3764,7 +3763,7 @@ namespace RegisterAPII.Migrations
                             Id = 270,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(342),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6918),
                             DaysAbsent = 0,
                             Name = "Student 270 in Senior 3"
                         },
@@ -3773,7 +3772,7 @@ namespace RegisterAPII.Migrations
                             Id = 271,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(343),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6919),
                             DaysAbsent = 0,
                             Name = "Student 271 in Senior 3"
                         },
@@ -3782,7 +3781,7 @@ namespace RegisterAPII.Migrations
                             Id = 272,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(344),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6920),
                             DaysAbsent = 0,
                             Name = "Student 272 in Senior 3"
                         },
@@ -3791,7 +3790,7 @@ namespace RegisterAPII.Migrations
                             Id = 273,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(344),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6921),
                             DaysAbsent = 0,
                             Name = "Student 273 in Senior 3"
                         },
@@ -3800,7 +3799,7 @@ namespace RegisterAPII.Migrations
                             Id = 274,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(345),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6922),
                             DaysAbsent = 0,
                             Name = "Student 274 in Senior 3"
                         },
@@ -3809,7 +3808,7 @@ namespace RegisterAPII.Migrations
                             Id = 275,
                             Age = 0,
                             ClassId = 11,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(346),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6922),
                             DaysAbsent = 0,
                             Name = "Student 275 in Senior 3"
                         },
@@ -3818,7 +3817,7 @@ namespace RegisterAPII.Migrations
                             Id = 276,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(346),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6923),
                             DaysAbsent = 0,
                             Name = "Student 276 in Senior 4"
                         },
@@ -3827,7 +3826,7 @@ namespace RegisterAPII.Migrations
                             Id = 277,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(347),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6924),
                             DaysAbsent = 0,
                             Name = "Student 277 in Senior 4"
                         },
@@ -3836,7 +3835,7 @@ namespace RegisterAPII.Migrations
                             Id = 278,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(348),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6925),
                             DaysAbsent = 0,
                             Name = "Student 278 in Senior 4"
                         },
@@ -3845,7 +3844,7 @@ namespace RegisterAPII.Migrations
                             Id = 279,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(348),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6926),
                             DaysAbsent = 0,
                             Name = "Student 279 in Senior 4"
                         },
@@ -3854,7 +3853,7 @@ namespace RegisterAPII.Migrations
                             Id = 280,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(349),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6927),
                             DaysAbsent = 0,
                             Name = "Student 280 in Senior 4"
                         },
@@ -3863,7 +3862,7 @@ namespace RegisterAPII.Migrations
                             Id = 281,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(350),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6928),
                             DaysAbsent = 0,
                             Name = "Student 281 in Senior 4"
                         },
@@ -3872,7 +3871,7 @@ namespace RegisterAPII.Migrations
                             Id = 282,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(350),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6929),
                             DaysAbsent = 0,
                             Name = "Student 282 in Senior 4"
                         },
@@ -3881,7 +3880,7 @@ namespace RegisterAPII.Migrations
                             Id = 283,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(351),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6930),
                             DaysAbsent = 0,
                             Name = "Student 283 in Senior 4"
                         },
@@ -3890,7 +3889,7 @@ namespace RegisterAPII.Migrations
                             Id = 284,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(352),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6931),
                             DaysAbsent = 0,
                             Name = "Student 284 in Senior 4"
                         },
@@ -3899,7 +3898,7 @@ namespace RegisterAPII.Migrations
                             Id = 285,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(352),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6932),
                             DaysAbsent = 0,
                             Name = "Student 285 in Senior 4"
                         },
@@ -3908,7 +3907,7 @@ namespace RegisterAPII.Migrations
                             Id = 286,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(353),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6933),
                             DaysAbsent = 0,
                             Name = "Student 286 in Senior 4"
                         },
@@ -3917,7 +3916,7 @@ namespace RegisterAPII.Migrations
                             Id = 287,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(354),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6933),
                             DaysAbsent = 0,
                             Name = "Student 287 in Senior 4"
                         },
@@ -3926,7 +3925,7 @@ namespace RegisterAPII.Migrations
                             Id = 288,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(354),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6934),
                             DaysAbsent = 0,
                             Name = "Student 288 in Senior 4"
                         },
@@ -3935,7 +3934,7 @@ namespace RegisterAPII.Migrations
                             Id = 289,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(355),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6935),
                             DaysAbsent = 0,
                             Name = "Student 289 in Senior 4"
                         },
@@ -3944,7 +3943,7 @@ namespace RegisterAPII.Migrations
                             Id = 290,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(356),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6936),
                             DaysAbsent = 0,
                             Name = "Student 290 in Senior 4"
                         },
@@ -3953,7 +3952,7 @@ namespace RegisterAPII.Migrations
                             Id = 291,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(356),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6937),
                             DaysAbsent = 0,
                             Name = "Student 291 in Senior 4"
                         },
@@ -3962,7 +3961,7 @@ namespace RegisterAPII.Migrations
                             Id = 292,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(357),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6938),
                             DaysAbsent = 0,
                             Name = "Student 292 in Senior 4"
                         },
@@ -3971,7 +3970,7 @@ namespace RegisterAPII.Migrations
                             Id = 293,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(358),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6938),
                             DaysAbsent = 0,
                             Name = "Student 293 in Senior 4"
                         },
@@ -3980,7 +3979,7 @@ namespace RegisterAPII.Migrations
                             Id = 294,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(358),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6939),
                             DaysAbsent = 0,
                             Name = "Student 294 in Senior 4"
                         },
@@ -3989,7 +3988,7 @@ namespace RegisterAPII.Migrations
                             Id = 295,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(359),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6940),
                             DaysAbsent = 0,
                             Name = "Student 295 in Senior 4"
                         },
@@ -3998,7 +3997,7 @@ namespace RegisterAPII.Migrations
                             Id = 296,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(360),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6941),
                             DaysAbsent = 0,
                             Name = "Student 296 in Senior 4"
                         },
@@ -4007,7 +4006,7 @@ namespace RegisterAPII.Migrations
                             Id = 297,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(360),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6942),
                             DaysAbsent = 0,
                             Name = "Student 297 in Senior 4"
                         },
@@ -4016,7 +4015,7 @@ namespace RegisterAPII.Migrations
                             Id = 298,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(361),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6943),
                             DaysAbsent = 0,
                             Name = "Student 298 in Senior 4"
                         },
@@ -4025,7 +4024,7 @@ namespace RegisterAPII.Migrations
                             Id = 299,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(362),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6943),
                             DaysAbsent = 0,
                             Name = "Student 299 in Senior 4"
                         },
@@ -4034,7 +4033,7 @@ namespace RegisterAPII.Migrations
                             Id = 300,
                             Age = 0,
                             ClassId = 12,
-                            CreatedAt = new DateTime(2025, 8, 4, 11, 20, 55, 232, DateTimeKind.Utc).AddTicks(362),
+                            CreatedAt = new DateTime(2025, 8, 3, 11, 20, 26, 847, DateTimeKind.Utc).AddTicks(6944),
                             DaysAbsent = 0,
                             Name = "Student 300 in Senior 4"
                         });

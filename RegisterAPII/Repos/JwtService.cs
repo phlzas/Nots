@@ -13,69 +13,44 @@ namespace RegisterAPII.Repos
 {
     public class JwtService : IJwtService
     {
+        // This holds the secret key string from your configuration.
         private readonly string _key;
 
-        // تم تمرير المفتاح من الـ Configuration أو مباشرة من الـ Startup
+        // The key is injected here when JwtService is created.
+        // The comment "تم تمرير المفتاح من الـ Configuration أو مباشرة من الـ Startup"
+        // confirms it comes from your configuration (e.g., appsettings.json).
         public JwtService(string key)
         {
             _key = key;
         }
 
-        //public string GenerateToken(Accounts user)
-        //{
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    var key = Encoding.ASCII.GetBytes(_key);
-
-        //    var claims = new[]
-        //    {
-        //        new Claim(ClaimTypes.Name, user.Id.ToString()),
-        //        new Claim(ClaimTypes.Email, user.Email),
-        //        new Claim(ClaimTypes.Role, user.Role?.Name ?? "User") // معالجة الـ null
-        //    };
-
-        //    var tokenDescriptor = new SecurityTokenDescriptor
-        //    {
-        //        Subject = new ClaimsIdentity(claims),
-        //        Expires = DateTime.UtcNow.AddDays(7),
-        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        //    };
-
-        //    var token = tokenHandler.CreateToken(tokenDescriptor);
-        //    return tokenHandler.WriteToken(token);
-        //}
-
-
-        // --- File: Repos/JwtService.cs ---
-
-        // ... (your existing using statements)
-
-        public string GenerateToken(Accounts user) // Assuming 'Accounts' is your user model
+        // This is your primary method for creating the JWT.
+        public string GenerateToken(Accounts user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
+
+            // --- CRITICAL POINT #1: KEY ENCODING ---
+            // You are converting your secret string into a byte array using ASCII.
+            // This is a very common source of errors.
             var key = Encoding.ASCII.GetBytes(_key);
 
-            // --- THIS IS THE CORRECTED CLAIMS LIST ---
+            // These are the claims (the token's payload).
+            // This section looks good and defines the user's identity.
             var claims = new[]
             {
-        // Use JwtRegisteredClaimNames.NameId to produce the "nameid" claim
-        new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
-
-        // Use a custom string "fullName" to match what React wants
-        // You must ensure your 'Accounts' model has a 'FullName' property!
-        new Claim("fullName", user.FullName), 
-        
-        // This was already correct
-        new Claim(ClaimTypes.Email, user.Email),
-        
-        // This was already correct
-        // Note: Make sure your 'Accounts' model has a 'Role' property that has a 'Name' property, or just user.Role if it's a string.
-        new Claim(ClaimTypes.Role, user.Role?.Name ?? "User")
-    };
+                new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()), // Standard claim for User ID
+                new Claim("fullName", user.FullName), // Custom claim for the user's full name
+                new Claim(ClaimTypes.Email, user.Email), // Standard claim for Email
+                new Claim(ClaimTypes.Role, user.Role.Name) // Standard claim for Role
+            };
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddDays(7), // Or from configuration
+                Expires = DateTime.UtcNow.AddDays(7),
+
+                // --- CRITICAL POINT #2: SIGNING CREDENTIALS ---
+                // The token is signed here using the HMAC-SHA256 algorithm.
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
