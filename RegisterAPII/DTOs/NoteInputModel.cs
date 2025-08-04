@@ -1,15 +1,68 @@
 namespace RegisterAPII.DTOs
 {
-    public class NoteInputModel
+    using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using RegisterAPII.DTOs;
+using RegisterAPII.Interfaces;
+
+namespace RegisterAPII.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AttendanceController : ControllerBase
     {
-        public int StudentId { get; set; }
-        public int SessionNumber { get; set; }
-        public DateTime Date { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string NoteType { get; set; }
-        public IFormFile ImageUrl { get; set; }
-        public string gen { get; set; }
-        
+        private readonly IAttendanceRepository _repo;
+        public AttendanceController(IAttendanceRepository repo)
+        {
+            _repo = repo;
+        }
+
+        [HttpPost("save")]
+        public async Task<IActionResult> SaveAttendance([FromBody] SaveAttendanceDto dto)
+        {
+            await _repo.SaveAttendanceAsync(dto);
+            return Ok(new { message = "Attendance saved successfully." });
+        }
+
+        [HttpPost("add-note")]
+        public async Task<IActionResult> AddNote([FromBody] NoteInputModel model)
+        {
+            await _repo.AddNoteAsync(model);
+            return Ok(new { message = "Note added successfully." });
+        }
     }
+}
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using RegisterAPII.DTOs;
+using RegisterAPII.Interfaces;
+
+namespace RegisterAPII.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AttendanceController : ControllerBase
+    {
+        private readonly IAttendanceRepository _repo;
+        public AttendanceController(IAttendanceRepository repo)
+        {
+            _repo = repo;
+        }
+
+        [HttpPost("save")]
+        public async Task<IActionResult> SaveAttendance([FromBody] SaveAttendanceDto dto)
+        {
+            await _repo.SaveAttendanceAsync(dto);
+            return Ok(new { message = "Attendance saved successfully." });
+        }
+
+        [HttpPost("add-note")]
+        public async Task<IActionResult> AddNote([FromBody] NoteInputModel model)
+        {
+            await _repo.AddNoteAsync(model);
+            return Ok(new { message = "Note added successfully." });
+        }
+    }
+}
+
 }
