@@ -8,5 +8,7 @@ namespace RegisterAPII.Interfaces
         Task<AbsenceRecordDto?> GetByIdAsync(int id);
         Task AddAsync(CreateAbsenceRecordDto dto);
         Task DeleteAsync(int id);
+        Task<IEnumerable<object>> GetFilteredAbsencesAsync(string? grade = null, string? className = null, int? session = null, DateTime? date = null);
+        Task<object> GetGradesAndClassesAsync();
     }
 }

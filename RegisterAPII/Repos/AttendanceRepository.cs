@@ -201,5 +201,104 @@ namespace RegisterAPII.Repos
             return true;
         }
 
+        public async Task<object> GetAttendanceAnalyticsAsync()
+        {
+            var totalStudents = await _context.StudentProfiles.CountAsync();
+            var totalAttendanceRecords = await _context.AttendanceRecords.CountAsync();
+            var presentRecords = await _context.AttendanceRecords.CountAsync(a => a.IsPresent);
+            var absentRecords = totalAttendanceRecords - presentRecords;
+            var lateRecords = await _context.AttendanceRecords.CountAsync(a => !a.IsPresent && a.SessionNumber > 1);
+
+            var attendanceRate = totalAttendanceRecords > 0 ? (double)presentRecords / totalAttendanceRecords * 100 : 0;
+
+            // Get class performance
+            var classPerformance = await _context.ClassRooms
+                .Select(c => new
+                {
+                    ClassName = c.Name,
+                    TotalStudents = c.Students.Count(),
+                    AttendanceRecords = _context.AttendanceRecords
+                        .Where(a => c.Students.Any(s => s.Id == a.StudentId))
+                        .Count(),
+                    PresentRecords = _context.AttendanceRecords
+                        .Where(a => c.Students.Any(s => s.Id == a.StudentId) && a.IsPresent)
+                        .Count()
+                })
+                .ToListAsync();
+
+            var classData = classPerformance.Select(c => new
+            {
+                c.ClassName,
+                AttendanceRate = c.AttendanceRecords > 0 ? (double)c.PresentRecords / c.AttendanceRecords * 100 : 0
+            }).ToList();
+
+            // Get attendance trend for last 30 days
+            var thirtyDaysAgo = DateTime.Now.AddDays(-30);
+            var dailyAttendance = await _context.AttendanceRecords
+                .Where(a => a.Date >= thirtyDaysAgo)
+                .GroupBy(a => a.Date.Date)
+                .Select(g => new
+                {
+                    Date = g.Key,
+                    TotalRecords = g.Count(),
+                    PresentRecords = g.Count(a => a.IsPresent),
+                    AttendanceRate = g.Count() > 0 ? (double)g.Count(a => a.IsPresent) / g.Count() * 100 : 0
+                })
+                .OrderBy(x => x.Date)
+                .ToListAsync();
+
+            // Get students with low attendance
+            var studentAttendance = await _context.StudentProfiles
+                .Select(s => new
+                {
+                    s.Id,
+                    s.Name,
+                    ClassName = s.Class.Name,
+                    TotalRecords = _context.AttendanceRecords.Count(a => a.StudentId == s.Id),
+                    PresentRecords = _context.AttendanceRecords.Count(a => a.StudentId == s.Id && a.IsPresent),
+                    AbsentRecords = _context.AttendanceRecords.Count(a => a.StudentId == s.Id && !a.IsPresent),
+                    s.DaysAbsent
+                })
+                .ToListAsync();
+
+            var atRiskStudents = studentAttendance
+                .Where(s => s.TotalRecords > 0)
+                .Select(s => new
+                {
+                    s.Id,
+                    s.Name,
+                    s.ClassName,
+                    Absences = s.AbsentRecords,
+                    Lates = 0, // We don't track lates separately in current model
+                    AttendanceRate = (double)s.PresentRecords / s.TotalRecords * 100
+                })
+                .Where(s => s.AttendanceRate < 85) // Students with less than 85% attendance
+                .OrderBy(s => s.AttendanceRate)
+                .Take(10)
+                .ToList();
+
+            var topClass = classData.OrderByDescending(c => c.AttendanceRate).FirstOrDefault()?.ClassName ?? "N/A";
+
+            return new
+            {
+                KpiData = new
+                {
+                    AttendanceRate = Math.Round(attendanceRate, 1),
+                    TotalAbsences = absentRecords,
+                    TotalLates = lateRecords,
+                    TopClass = topClass
+                },
+                ClassPerformance = classData,
+                AttendanceTrend = dailyAttendance,
+                StatusDistribution = new
+                {
+                    Present = presentRecords,
+                    Absent = absentRecords,
+                    Late = lateRecords
+                },
+                AtRiskStudents = atRiskStudents
+            };
+        }
+
     }
 }

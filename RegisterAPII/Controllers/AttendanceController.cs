@@ -145,5 +145,20 @@ namespace RegisterAPII.Controllers
                 return StatusCode(500, new { message = "An error occurred while deleting attendance." });
             }
         }
+
+        [HttpGet("analytics")]
+        public async Task<IActionResult> GetAttendanceAnalytics()
+        {
+            try
+            {
+                var analytics = await _repo.GetAttendanceAnalyticsAsync();
+                return Ok(analytics);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error retrieving attendance analytics");
+                return StatusCode(500, new { message = "An error occurred while retrieving attendance analytics." });
+            }
+        }
     }
 }

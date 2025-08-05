@@ -23,9 +23,10 @@ builder.Services.AddSwaggerGen();
     {
         options.AddPolicy("AllowSpecificOrigin", policyBuilder =>
         {
-            policyBuilder.WithOrigins("http://localhost:3000")
+            policyBuilder.WithOrigins("http://localhost:3000", "https://localhost:3000")
                          .AllowAnyMethod()
-                         .AllowAnyHeader();
+                         .AllowAnyHeader()
+                         .AllowCredentials();
         });
     });
 
@@ -68,7 +69,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// Only use HTTPS redirection in production to avoid CORS issues in development
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseCors("AllowSpecificOrigin");
 app.UseAuthentication();
 app.UseAuthorization();

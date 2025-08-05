@@ -10,5 +10,6 @@ namespace RegisterAPII.Interfaces
         Task<object> GetDailyAttendanceReportAsync(DateTime date);
         Task<bool> UpdateAttendanceAsync(int attendanceId, UpdateAttendanceDto dto);
         Task<bool> DeleteAttendanceAsync(int attendanceId);
+        Task<object> GetAttendanceAnalyticsAsync();
     }
 }
