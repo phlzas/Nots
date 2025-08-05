@@ -1,26 +1,26 @@
 // --- File: src/pages/StudentDashboard.js (Multi-select Notes Dropdown) ---
 
-import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import TeacherSidebar from './components/TeacherSidebar';
-import AppHeader from './components/AppHeader';
-import './StudentDashboard.css';
-import { FiChevronDown, FiX } from 'react-icons/fi';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import TeacherSidebar from "./components/TeacherSidebar";
+import AppHeader from "./components/AppHeader";
+import "./StudentDashboard.css";
+import { FiChevronDown, FiX } from "react-icons/fi";
 
 // ----------------------------------------------
 // Data (unchanged except we export noteOptions)
 // ----------------------------------------------
 const gradesData = {
-  '': [],
-  Junior: ['Junior 1', 'Junior 2', 'Junior 3', 'Junior 4'],
-  Wheeler: ['Wheeler 1', 'Wheeler 2', 'Wheeler 3', 'Wheeler 4'],
-  Senior: ['Senior 1', 'Senior 2', 'Senior 3', 'Senior 4'],
+  "": [],
+  Junior: ["Junior 1", "Junior 2", "Junior 3", "Junior 4"],
+  Wheeler: ["Wheeler 1", "Wheeler 2", "Wheeler 3", "Wheeler 4"],
+  Senior: ["Senior 1", "Senior 2", "Senior 3", "Senior 4"],
 };
 const sessionsData = [1, 2, 3, 4, 5, 6, 7, 8];
 
 // Preset behavior notes (treated as *bad* by default)
 // You can later split into good/bad arrays if needed.
-const noteOptions = ['Side Talks', 'Eating', 'Late'];
+const noteOptions = ["Side Talks", "Eating", "Late"];
 
 const mockStudents = Array.from({ length: 25 }, (_, i) => ({
   id: `s${i + 1}`,
@@ -30,24 +30,19 @@ const mockStudents = Array.from({ length: 25 }, (_, i) => ({
 /* =================================================================
    AddNoteModal (unchanged logic from last version, trimmed slightly)
    ================================================================= */
-const AddNoteModal = ({
-  open,
-  onClose,
-  onAddNote,
-  studentName = '',
-}) => {
-  const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
-  const [imagePreview, setImagePreview] = useState('');
-  const [category, setCategory] = useState('school'); // Default to school
+const AddNoteModal = ({ open, onClose, onAddNote, studentName = "" }) => {
+  const [title, setTitle] = useState("");
+  const [desc, setDesc] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
+  const [category, setCategory] = useState("school"); // Default to school
   const fileRef = useRef(null);
 
   useEffect(() => {
     if (open) {
-      setTitle('');
-      setDesc('');
-      setImagePreview('');
-      setCategory('school'); // Reset to default
+      setTitle("");
+      setDesc("");
+      setImagePreview("");
+      setCategory("school"); // Reset to default
     }
   }, [open]);
 
@@ -60,7 +55,7 @@ const AddNoteModal = ({
   const buildNote = (type) => ({
     id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
     type,
-    label: title.trim() || 'Custom Note',
+    label: title.trim() || "Custom Note",
     title: title.trim() || undefined,
     description: desc.trim() || undefined,
     imageUrl: imagePreview || undefined,
@@ -68,11 +63,11 @@ const AddNoteModal = ({
   });
 
   const handleAddGood = () => {
-    onAddNote(buildNote('good'));
+    onAddNote(buildNote("good"));
     onClose();
   };
   const handleAddBad = () => {
-    onAddNote(buildNote('bad'));
+    onAddNote(buildNote("bad"));
     onClose();
   };
 
@@ -80,11 +75,17 @@ const AddNoteModal = ({
   return (
     <div className="note-modal-overlay">
       <div className="note-modal">
-        <button className="note-modal-close" onClick={onClose} aria-label="Close">
+        <button
+          className="note-modal-close"
+          onClick={onClose}
+          aria-label="Close"
+        >
           <FiX />
         </button>
         <h3 className="note-modal-title">Add Note</h3>
-        {studentName && <p className="note-modal-student">For: {studentName}</p>}
+        {studentName && (
+          <p className="note-modal-student">For: {studentName}</p>
+        )}
 
         <div className="note-modal-field">
           <label>Title</label>
@@ -132,7 +133,7 @@ const AddNoteModal = ({
               ref={fileRef}
               type="file"
               accept="image/*"
-              style={{ display: 'none' }}
+              style={{ display: "none" }}
               onChange={handleFile}
             />
             {imagePreview && (
@@ -146,10 +147,18 @@ const AddNoteModal = ({
         </div>
 
         <div className="note-modal-actions">
-          <button type="button" className="note-modal-btn good" onClick={handleAddGood}>
+          <button
+            type="button"
+            className="note-modal-btn good"
+            onClick={handleAddGood}
+          >
             Add Good Note
           </button>
-          <button type="button" className="note-modal-btn bad" onClick={handleAddBad}>
+          <button
+            type="button"
+            className="note-modal-btn bad"
+            onClick={handleAddBad}
+          >
             Add Bad Note
           </button>
         </div>
@@ -168,7 +177,7 @@ const NoteChips = ({ notes = [], onRemove }) => {
       {notes.map((n) => (
         <span
           key={n.id}
-          className={`note-chip ${n.type === 'good' ? 'good' : 'bad'}`}
+          className={`note-chip ${n.type === "good" ? "good" : "bad"}`}
           title={n.description || n.title || n.label}
         >
           {n.label}
@@ -196,9 +205,9 @@ const MultiNoteDropdown = ({
   disabled = false,
   presetOptions = [],
   notes = [],
-  onToggleOption,   // (opt: string, checked: bool) -> void
-  onRemoveNote,     // (noteId: string) -> void (for chips)
-  onSelectOther,    // () => void (open modal)
+  onToggleOption, // (opt: string, checked: bool) -> void
+  onRemoveNote, // (noteId: string) -> void (for chips)
+  onSelectOther, // () => void (open modal)
 }) => {
   const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
@@ -210,20 +219,20 @@ const MultiNoteDropdown = ({
       if (!wrapperRef.current) return;
       if (!wrapperRef.current.contains(e.target)) setOpen(false);
     };
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
   // Which preset options are currently active?
   const activeLabels = new Set(
     notes
-      .filter((n) => n.type === 'bad' && presetOptions.includes(n.label))
+      .filter((n) => n.type === "bad" && presetOptions.includes(n.label))
       .map((n) => n.label)
   );
 
   return (
     <div
-      className={`multi-note-wrapper ${disabled ? 'disabled' : ''}`}
+      className={`multi-note-wrapper ${disabled ? "disabled" : ""}`}
       ref={wrapperRef}
     >
       {/* Chips inline */}
@@ -236,7 +245,7 @@ const MultiNoteDropdown = ({
         disabled={disabled}
         onClick={() => setOpen((v) => !v)}
       >
-        {notes.length ? 'Add more' : 'Add notes'}
+        {notes.length ? "Add more" : "Add notes"}
         <FiChevronDown />
       </button>
 
@@ -280,9 +289,9 @@ const StudentDashboard = () => {
   const [user, setUser] = useState(null);
 
   // filters
-  const [selectedGrade, setSelectedGrade] = useState('');
-  const [selectedClass, setSelectedClass] = useState('');
-  const [selectedSession, setSelectedSession] = useState('');
+  const [selectedGrade, setSelectedGrade] = useState("");
+  const [selectedClass, setSelectedClass] = useState("");
+  const [selectedSession, setSelectedSession] = useState("");
 
   // students
   const [students, setStudents] = useState([]);
@@ -295,11 +304,11 @@ const StudentDashboard = () => {
 
   // load user
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     } else {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate]);
 
@@ -340,12 +349,12 @@ const StudentDashboard = () => {
       let nextNotes = current.notes;
       if (checked) {
         // add if not exists
-        if (!current.notes.some((n) => n.label === label && n.type === 'bad')) {
+        if (!current.notes.some((n) => n.label === label && n.type === "bad")) {
           nextNotes = [
             ...current.notes,
             {
               id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
-              type: 'bad',
+              type: "bad",
               label,
             },
           ];
@@ -353,7 +362,7 @@ const StudentDashboard = () => {
       } else {
         // remove all with this label
         nextNotes = current.notes.filter(
-          (n) => !(n.type === 'bad' && n.label === label)
+          (n) => !(n.type === "bad" && n.label === label)
         );
       }
       return {
@@ -396,24 +405,79 @@ const StudentDashboard = () => {
     });
   };
 
-  // Save (placeholder)
-  const handleSaveAttendance = () => {
-    console.log('Saving Attendance Data:', studentStatuses);
-    alert('Attendance and Behavior has been saved!');
-    setSelectedGrade('');
-    setSelectedClass('');
-    setSelectedSession('');
+  // Save attendance to backend
+  const handleSaveAttendance = async () => {
+    try {
+      // Prepare attendance data for backend
+      const attendanceData = {
+        grade: selectedGrade,
+        className: selectedClass,
+        session: parseInt(selectedSession),
+        date: new Date().toISOString().split("T")[0], // Today's date
+        students: students.map((student) => {
+          const status = studentStatuses[student.id] || {
+            isPresent: false,
+            notes: [],
+          };
+          return {
+            studentId: student.id,
+            studentName: student.name,
+            isPresent: status.isPresent,
+            notes: status.notes.map((note) => ({
+              type: note.type,
+              label: note.label,
+              title: note.title,
+              description: note.description,
+              category: note.category || "school",
+            })),
+          };
+        }),
+      };
+
+      console.log("Saving Attendance Data:", attendanceData);
+
+      // Save to backend
+      const response = await fetch(
+        "http://localhost:5050/api/Attendance/save",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(attendanceData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Failed to save attendance: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Save result:", result);
+
+      alert("Attendance and Behavior has been saved successfully!");
+
+      // Reset form
+      setSelectedGrade("");
+      setSelectedClass("");
+      setSelectedSession("");
+      setStudents([]);
+      setStudentStatuses({});
+    } catch (error) {
+      console.error("Error saving attendance:", error);
+      alert(`Failed to save attendance: ${error.message}`);
+    }
   };
 
   // filter selects (unchanged)
   const handleGradeSelect = (grade) => {
     setSelectedGrade(grade);
-    setSelectedClass('');
-    setSelectedSession('');
+    setSelectedClass("");
+    setSelectedSession("");
   };
   const handleClassSelect = (className) => {
     setSelectedClass(className);
-    setSelectedSession('');
+    setSelectedSession("");
   };
   const handleSessionSelect = (session) => {
     setSelectedSession(session);
@@ -516,7 +580,7 @@ const StudentDashboard = () => {
                               })
                             }
                           />
-                          {status.isPresent ? 'Present' : 'Absent'}
+                          {status.isPresent ? "Present" : "Absent"}
                         </label>
 
                         {/* Multi-note dropdown */}
@@ -530,7 +594,9 @@ const StudentDashboard = () => {
                           onRemoveNote={(noteId) =>
                             removeNoteFromStudent(student.id, noteId)
                           }
-                          onSelectOther={() => setActiveNoteStudentId(student.id)}
+                          onSelectOther={() =>
+                            setActiveNoteStudentId(student.id)
+                          }
                         />
                       </div>
                     </li>
