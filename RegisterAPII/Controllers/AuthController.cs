@@ -42,5 +42,32 @@ namespace RegisterAPII.Controllers
 
             return Ok(new { token = result });
         }
+
+        [HttpPost("signup")]
+        public async Task<IActionResult> Signup(SignupDto dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _authService.SignupAsync(dto);
+
+            if (result == "Email already registered.")
+                return BadRequest(new { message = result });
+            
+            if (result == "Invalid role selected.")
+                return BadRequest(new { message = result });
+
+            if (result == "Registration successful.")
+                return Ok(new { message = result });
+
+            return StatusCode(500, new { message = "Registration failed." });
+        }
+
+        [HttpGet("roles")]
+        public async Task<IActionResult> GetRoles()
+        {
+            var roles = await _authService.GetRolesAsync();
+            return Ok(roles);
+        }
     }
 }

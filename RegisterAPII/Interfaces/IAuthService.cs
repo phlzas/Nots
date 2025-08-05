@@ -9,5 +9,7 @@ namespace RegisterAPII.Interfaces
         Task<string?> ForgotPasswordAsync(ForgotPasswordDto dto);
         Task<string?> ResetPasswordAsync(string token, ResetPasswordDto dto);
         Task<string?> LoginAsync(LoginDto dto);
+        Task<string?> SignupAsync(SignupDto dto);
+        Task<List<Role>> GetRolesAsync();
     }
 }

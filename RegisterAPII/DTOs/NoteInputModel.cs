@@ -13,9 +13,9 @@ namespace RegisterAPII.DTOs
         [Required]
         public string Description { get; set; }
         
-        public string NoteType { get; set; }
+        public string NoteType { get; set; } = "general";
         
-        public string ImageUrl { get; set; }
+        public string ImageUrl { get; set; } = "";
         
         public DateTime Date { get; set; } = DateTime.UtcNow;
     }

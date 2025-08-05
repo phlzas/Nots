@@ -1,4 +1,4 @@
-﻿// In Controllers/StudentProfileController.cs
+// In Controllers/StudentProfileController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RegisterAPII.DTOs;

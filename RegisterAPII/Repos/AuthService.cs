@@ -82,7 +82,7 @@ namespace RegisterAPII.Repos
             };
         }
 
-        public async Task<string> LoginAsync(LoginDto dto)
+        public async Task<string?> LoginAsync(LoginDto dto)
         {
             var user = await _context.Accounts
                 .Include(a => a.Role) // This tells EF Core to join the Roles table
@@ -142,6 +142,78 @@ namespace RegisterAPII.Repos
             user.ResetTokenExpiry = null;
             await _userRepository.SaveChangesAsync();
             return "Password changed successfully.";
+        }
+
+        public async Task<string?> SignupAsync(SignupDto dto)
+        {
+            // Check if email already exists
+            var existingUser = await _context.Accounts
+                .FirstOrDefaultAsync(u => u.Email == dto.Email);
+            
+            if (existingUser != null)
+                return "Email already registered.";
+
+            // Check if role exists
+            var role = await _context.Roles.FindAsync(dto.RoleId);
+            if (role == null)
+                return "Invalid role selected.";
+
+            // Generate a unique national ID (you might want to make this required from frontend)
+            var nationalId = GenerateUniqueNationalId();
+
+            // Create new account
+            var newAccount = new Accounts
+            {
+                FullName = dto.FullName,
+                Email = dto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                NationalID = nationalId,
+                RoleId = dto.RoleId,
+                IsActive = true,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            // Create corresponding login account
+            var newLoginAccount = new LoginAccount
+            {
+                Email = dto.Email,
+                Password = dto.Password, // Store plain password as per your existing structure
+                NationalID = nationalId
+            };
+
+            _context.Accounts.Add(newAccount);
+            _context.LoginAccounts.Add(newLoginAccount);
+            
+            await _context.SaveChangesAsync();
+
+            // Link the accounts
+            newLoginAccount.AccountId = newAccount.Id;
+            newAccount.LoginId = newLoginAccount.Id;
+            
+            await _context.SaveChangesAsync();
+
+            return "Registration successful.";
+        }
+
+        public async Task<List<Role>> GetRolesAsync()
+        {
+            return await _context.Roles.ToListAsync();
+        }
+
+        private string GenerateUniqueNationalId()
+        {
+            // Generate a unique 14-digit national ID
+            var random = new Random();
+            string nationalId;
+            bool exists;
+            
+            do
+            {
+                nationalId = "30101010" + random.Next(100000, 999999).ToString();
+                exists = _context.Accounts.Any(a => a.NationalID == nationalId);
+            } while (exists);
+            
+            return nationalId;
         }
     }
 }

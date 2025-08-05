@@ -48,6 +48,13 @@ namespace RegisterAPII.Repos
 
         public async Task AddNoteAsync(NoteInputModel model)
         {
+            // First, verify the student exists
+            var studentExists = await _context.StudentProfiles.AnyAsync(s => s.Id == model.StudentId);
+            if (!studentExists)
+            {
+                throw new ArgumentException($"Student with ID {model.StudentId} does not exist.");
+            }
+
             var record = await _context.AttendanceRecords.FirstOrDefaultAsync(a =>
                 a.StudentId == model.StudentId &&
                 a.Date.Date == model.Date.Date);
@@ -68,10 +75,11 @@ namespace RegisterAPII.Repos
             var note = new BehaviorNote
             {
                 AttendanceRecordId = record.Id,
-                Title = model.Title,
-                Description = model.Description,
-                NoteType = model.NoteType,
-                ImageUrl = model.ImageUrl
+                Title = model.Title ?? "",
+                Description = model.Description ?? "",
+                NoteType = model.NoteType ?? "general",
+                ImageUrl = model.ImageUrl ?? "",
+                gen = "system" // Default value for the gen property
             };
 
             _context.BehaviorNotes.Add(note);
@@ -82,17 +90,17 @@ namespace RegisterAPII.Repos
             {
                 var newNote = new
                 {
-                    Title = model.Title,
-                    Description = model.Description,
+                    Title = model.Title ?? "",
+                    Description = model.Description ?? "",
                     Date = model.Date.ToString("yyyy-MM-dd"),
-                    ImageUrl = model.ImageUrl
+                    ImageUrl = model.ImageUrl ?? ""
                 };
 
                 if (model.NoteType.ToLower() == "good")
                 {
                     var existingNotes = string.IsNullOrEmpty(student.GoodNotesJson)
                         ? new List<object>()
-                        : JsonSerializer.Deserialize<List<object>>(student.GoodNotesJson)!;
+                        : JsonSerializer.Deserialize<List<object>>(student.GoodNotesJson) ?? new List<object>();
 
                     existingNotes.Add(newNote);
                     student.GoodNotesJson = JsonSerializer.Serialize(existingNotes);
@@ -101,7 +109,7 @@ namespace RegisterAPII.Repos
                 {
                     var existingNotes = string.IsNullOrEmpty(student.BadNotesJson)
                         ? new List<object>()
-                        : JsonSerializer.Deserialize<List<object>>(student.BadNotesJson)!;
+                        : JsonSerializer.Deserialize<List<object>>(student.BadNotesJson) ?? new List<object>();
 
                     existingNotes.Add(newNote);
                     student.BadNotesJson = JsonSerializer.Serialize(existingNotes);

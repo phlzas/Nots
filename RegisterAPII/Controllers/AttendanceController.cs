@@ -57,10 +57,15 @@ namespace RegisterAPII.Controllers
 
                 return Ok(new { message = "Note added successfully." });
             }
+            catch (ArgumentException ex)
+            {
+                _logger.LogWarning(ex, "Invalid argument for adding note: {StudentId}", model?.StudentId);
+                return BadRequest(new { message = ex.Message });
+            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error adding note for {StudentId}", model?.StudentId);
-                return StatusCode(500, new { message = "An error occurred while adding the note." });
+                _logger.LogError(ex, "Error adding note for {StudentId}: {ErrorMessage}", model?.StudentId, ex.Message);
+                return StatusCode(500, new { message = "An error occurred while adding the note.", details = ex.Message });
             }
         }
 
