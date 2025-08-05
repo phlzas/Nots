@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using RegisterAPII.DTOs;
 using RegisterAPII.Interfaces;
+using RegisterAPII.Models;
+
 
 namespace RegisterAPII.Controllers
 {

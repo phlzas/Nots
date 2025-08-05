@@ -50,7 +50,6 @@ namespace RegisterAPII.Repos
         {
             var record = await _context.AttendanceRecords.FirstOrDefaultAsync(a =>
                 a.StudentId == model.StudentId &&
-                a.SessionNumber == model.SessionNumber &&
                 a.Date.Date == model.Date.Date);
 
             if (record == null)
@@ -59,7 +58,7 @@ namespace RegisterAPII.Repos
                 {
                     StudentId = model.StudentId,
                     Date = model.Date,
-                    SessionNumber = model.SessionNumber,
+                    SessionNumber = 1,
                     IsPresent = true
                 };
                 _context.AttendanceRecords.Add(record);
@@ -110,6 +109,88 @@ namespace RegisterAPII.Repos
 
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<object>> GetAttendanceHistoryAsync(int studentId, DateTime? fromDate, DateTime? toDate)
+        {
+            var query = _context.AttendanceRecords
+                .Where(a => a.StudentId == studentId);
+
+            if (fromDate.HasValue)
+                query = query.Where(a => a.Date >= fromDate.Value.Date);
+
+            if (toDate.HasValue)
+                query = query.Where(a => a.Date <= toDate.Value.Date);
+
+            return await query
+                .OrderByDescending(a => a.Date)
+                .Select(a => new
+                {
+                    a.Id,
+                    a.Date,
+                    a.SessionNumber,
+                    a.IsPresent,
+                    a.NoteId
+                })
+                .ToListAsync();
+        }
+
+        public async Task<object> GetDailyAttendanceReportAsync(DateTime date)
+        {
+            var attendanceRecords = await _context.AttendanceRecords
+                .Where(a => a.Date.Date == date.Date)
+                .ToListAsync();
+
+            var totalStudents = await _context.StudentProfiles.CountAsync();
+            var presentStudents = attendanceRecords.Count(a => a.IsPresent);
+            var absentStudents = totalStudents - presentStudents;
+
+            // Get student names for the attendance records
+            var studentIds = attendanceRecords.Select(a => a.StudentId).Distinct().ToList();
+            var students = await _context.StudentProfiles
+                .Where(s => studentIds.Contains(s.Id))
+                .ToDictionaryAsync(s => s.Id, s => s.Name);
+
+            return new
+            {
+                Date = date.Date,
+                TotalStudents = totalStudents,
+                PresentStudents = presentStudents,
+                AbsentStudents = absentStudents,
+                AttendanceRecords = attendanceRecords.Select(a => new
+                {
+                    a.Id,
+                    a.StudentId,
+                    StudentName = students.ContainsKey(a.StudentId) ? students[a.StudentId] : "Unknown",
+                    a.IsPresent,
+                    a.SessionNumber
+                })
+            };
+        }
+
+        public async Task<bool> UpdateAttendanceAsync(int attendanceId, UpdateAttendanceDto dto)
+        {
+            var record = await _context.AttendanceRecords.FindAsync(attendanceId);
+            if (record == null)
+                return false;
+
+            record.IsPresent = dto.IsPresent;
+            record.Date = dto.Date;
+            record.SessionNumber = dto.SessionNumber;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteAttendanceAsync(int attendanceId)
+        {
+            var record = await _context.AttendanceRecords.FindAsync(attendanceId);
+            if (record == null)
+                return false;
+
+            _context.AttendanceRecords.Remove(record);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
     }

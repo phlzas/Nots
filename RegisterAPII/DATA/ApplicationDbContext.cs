@@ -32,13 +32,34 @@ namespace RegisterAPII.DATA
 
         public DbSet<Student> Students { get; set; }
         public DbSet<AbsenceRecord> AbsenceRecords { get; set; }
-
+        public DbSet<Staff> Staff { get; set; }
 
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Staff model configuration
+            modelBuilder.Entity<Staff>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.EmployeeName).IsRequired().HasMaxLength(100);
+                entity.Property(e => e.Department).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.Status).IsRequired().HasMaxLength(20);
+                entity.Property(e => e.CheckInMethod).IsRequired().HasMaxLength(20);
+                
+                // Foreign key relationships
+                entity.HasOne(e => e.Account)
+                      .WithMany()
+                      .HasForeignKey(e => e.AccountId)
+                      .OnDelete(DeleteBehavior.NoAction);
+                      
+                entity.HasOne(e => e.Role)
+                      .WithMany()
+                      .HasForeignKey(e => e.RoleId)
+                      .OnDelete(DeleteBehavior.NoAction);
+            });
 
             // for reports
             modelBuilder.Entity<Report>().HasData(
@@ -565,6 +586,139 @@ namespace RegisterAPII.DATA
                 new Accounts { Id = 33, FullName = "User 33 (Role 7)", Email = "user33.role7@example.com", NationalID = "30101010000033", PasswordHash = "", RoleId = 7, LoginId = 33, IsActive = true, CreatedAt = new DateTime(2025, 07, 16) },
                 new Accounts { Id = 34, FullName = "User 34 (Role 7)", Email = "user34.role7@example.com", NationalID = "30101010000034", PasswordHash = "", RoleId = 7, LoginId = 34, IsActive = true, CreatedAt = new DateTime(2025, 07, 16) },
                 new Accounts { Id = 35, FullName = "User 35 (Role 7)", Email = "user35.role7@example.com", NationalID = "30101010000035", PasswordHash = "", RoleId = 7, LoginId = 35, IsActive = true, CreatedAt = new DateTime(2025, 07, 16) }
+            );
+
+            // Staff mock data seeding
+            var today = DateTime.UtcNow.Date;
+            
+            modelBuilder.Entity<Staff>().HasData(
+                // Teaching Staff - Present
+                new Staff 
+                { 
+                    Id = 1, 
+                    EmployeeName = "Ahmed Hassan", 
+                    Department = "Mathematics", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(7).AddMinutes(45), 
+                    CheckInMethod = "Fingerprint", 
+                    Date = today,
+                    RoleId = 6, // Teacher role
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 2, 
+                    EmployeeName = "Fatima Al-Zahra", 
+                    Department = "English", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(7).AddMinutes(30), 
+                    CheckInMethod = "FaceID", 
+                    Date = today,
+                    RoleId = 6,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 3, 
+                    EmployeeName = "Omar Mahmoud", 
+                    Department = "Science", 
+                    Status = "Late", 
+                    CheckInTime = today.AddHours(8).AddMinutes(15), 
+                    CheckInMethod = "Manual", 
+                    Date = today,
+                    RoleId = 6,
+                    CreatedAt = DateTime.UtcNow
+                },
+                
+                // Administrative Staff
+                new Staff 
+                { 
+                    Id = 4, 
+                    EmployeeName = "Layla Ibrahim", 
+                    Department = "Administration", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(8).AddMinutes(0), 
+                    CheckInMethod = "Fingerprint", 
+                    Date = today,
+                    RoleId = 2, // Admin role
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 5, 
+                    EmployeeName = "Khaled Nasser", 
+                    Department = "IT Support", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(7).AddMinutes(50), 
+                    CheckInMethod = "FaceID", 
+                    Date = today,
+                    RoleId = 5, // IT role
+                    CreatedAt = DateTime.UtcNow
+                },
+                
+                // Security & Maintenance
+                new Staff 
+                { 
+                    Id = 6, 
+                    EmployeeName = "Mohamed Ali", 
+                    Department = "Security", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(6).AddMinutes(30), 
+                    CheckInMethod = "Fingerprint", 
+                    Date = today,
+                    RoleId = 7, // Engineer role (closest to security)
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 7, 
+                    EmployeeName = "Youssef Karim", 
+                    Department = "Maintenance", 
+                    Status = "Absent", 
+                    CheckInTime = null, 
+                    CheckInMethod = "N/A", 
+                    Date = today,
+                    RoleId = 7,
+                    CreatedAt = DateTime.UtcNow
+                },
+                
+                // More Teaching Staff
+                new Staff 
+                { 
+                    Id = 8, 
+                    EmployeeName = "Nadia Saleh", 
+                    Department = "Arabic", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(7).AddMinutes(40), 
+                    CheckInMethod = "FaceID", 
+                    Date = today,
+                    RoleId = 6,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 9, 
+                    EmployeeName = "Hassan Fouad", 
+                    Department = "Physical Education", 
+                    Status = "Late", 
+                    CheckInTime = today.AddHours(8).AddMinutes(20), 
+                    CheckInMethod = "Manual", 
+                    Date = today,
+                    RoleId = 6,
+                    CreatedAt = DateTime.UtcNow
+                },
+                new Staff 
+                { 
+                    Id = 10, 
+                    EmployeeName = "Maryam Othman", 
+                    Department = "Art", 
+                    Status = "Present", 
+                    CheckInTime = today.AddHours(7).AddMinutes(55), 
+                    CheckInMethod = "Fingerprint", 
+                    Date = today,
+                    RoleId = 6,
+                    CreatedAt = DateTime.UtcNow
+                }
             );
 
             // =================================================================
